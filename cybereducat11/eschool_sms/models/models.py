@@ -95,6 +95,6 @@ class inheritStudent(models.Model):
             'target': 'new',
             'type': 'ir.actions.act_window',
             'context': {'default_from_mobile_id': default_mobile.id, 'default_to_number': self.mobile,
-                        'default_record_id': self.id, 'default_model': 'education.student`'}
+                        'default_record_id': self.id, 'default_model': 'education.student'}
         }
 
