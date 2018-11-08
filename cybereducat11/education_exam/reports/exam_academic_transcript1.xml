@@ -24,6 +24,12 @@
                             float:right;
                             padding-top:10px;
                             }
+                            .center{
+                            float:center;
+                            padding-left:250px;
+                            padding-top:100px;
+                            }
+
 
                         </style>
                         <div class="page">
@@ -41,6 +47,9 @@
                                                 </t>
 
                                         </table>
+                                    </div>
+                                    <div class='center'>
+                                        <h1>Academic Transcript</h1>
                                     </div>
 
                                 </div>
