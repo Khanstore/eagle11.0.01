@@ -124,7 +124,7 @@ class acdemicTranscripts(models.AbstractModel):
 
         if count>0:
             return round(gp/count,2)
-        elif return 0
+        elif return round(gp,2)
         # float("{0:.2f}".format(gp/count))
     def get_row_count(self,student_history,exam):
         student = student_history.student_id
