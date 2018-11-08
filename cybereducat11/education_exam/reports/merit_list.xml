@@ -92,7 +92,7 @@
                                             </tr>
                                     </t>
                                 </table>
-                                <t t-esc="result"/>
+                                
                             </div>
                             </div>
                         </div>
