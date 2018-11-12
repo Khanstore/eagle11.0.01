@@ -83,7 +83,13 @@
                                             </tr>
                                             <tr><td rowspan="2">ID</td><td rowspan="2">Roll</td><td rowspan="2">Name</td><td rowspan="2">Exam</td>
                                                 <t t-foreach="subjects" t-as="subject">
-                                                            <td colspan="6"><span t-field="subject.display" /> </td>
+                                                    <t t-set="col" t-value="2"/>
+                                                    <t t-if="subject.tut_mark>0"> <t t-set="col" t-value="col+1"/></t>
+                                                   <t t-if="subject.subj_mark>0"> <t t-set="col" t-value="col+1"/></t>
+                                                   <t t-if="subject.obj_mark>0"> <t t-set="col" t-value="col+1"/></t>
+                                                   <t t-if="subject.prac_mark>0"> <t t-set="col" t-value="col+1"/></t>
+
+                                                            <td t-att-colspan="col"><span t-field="subject.display" /> </td>
                                                     <t t-if="subject_last" >
                                                         <td rowspan="2">Total Mark</td>
                                                         <td rowspan="2">GPA </td>
@@ -93,10 +99,10 @@
                                             </tr>
                                             <tr>
                                                 <t t-foreach="subjects" t-as="subject">
-                                                    <td>Tut</td>
-                                                    <td>Sub</td>
-                                                    <td>Obj</td>
-                                                    <td>Prac</td>
+                                                   <t t-if="subject.tut_mark>0"> <td>Tut</td></t>
+                                                   <t t-if="subject.subj_mark>0"> <td>Sub</td></t>
+                                                   <t t-if="subject.obj_mark>0"> <td>Obj</td></t>
+                                                   <t t-if="subject.prac_mark>0"> <td>Prac</td></t>
                                                     <td>Total</td>
                                                     <td>LG</td>
                                                 </t>
@@ -122,20 +128,38 @@
                                                     <t t-foreach="subjects" t-as="subject">
                                                         <t t-if="get_marks(exam,subject,student)">
                                                             <t t-foreach="get_marks(exam,subject,student)" t-as="mark">
-                                                                <td><t t-esc="mark.tut_mark" /></td>
-                                                                <td><t t-esc="mark.subj_mark" /></td>
-                                                                <td><t t-esc="mark.obj_mark" /></td>
-                                                                <td><t t-esc="mark.prac_mark" /></td>
+                                                                 <t t-if="subject.tut_mark>0">
+                                                                     <td><t t-esc="mark.tut_mark" /></td>
+                                                                 </t>
+
+                                                                 <t t-if="subject.subj_mark>0">
+                                                                     <td><t t-esc="mark.subj_mark" /></td>
+                                                                 </t>
+                                                                <t t-if="subject.obj_mark>0">
+                                                                     <td><t t-esc="mark.obj_mark" /></td>
+                                                                 </t>
+                                                                <t t-if="subject.prac_mark>0">
+                                                                     <td><t t-esc="mark.prac_mark" /></td>
+                                                                 </t>
                                                                 <td><t t-esc="mark.mark_scored" /></td>
                                                                 <t t-set="exam_total" t-value="exam_total + mark.mark_scored"/>
                                                                 <td><t t-esc="mark.letter_grade" /></td>
                                                             </t>
                                                         </t>
                                                         <t t-else="">
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
+                                                                <t t-if="subject.tut_mark>0">
+                                                                     <td><t t-esc="0" /></td>
+                                                                 </t>
+
+                                                                 <t t-if="subject.subj_mark>0">
+                                                                     <td><t t-esc="0" /></td>
+                                                                 </t>
+                                                                <t t-if="subject.obj_mark>0">
+                                                                     <td><t t-esc="0" /></td>
+                                                                 </t>
+                                                                <t t-if="subject.prac_mark>0">
+                                                                     <td><t t-esc="0" /></td>
+                                                                 </t>
                                                                 <td>0</td>
                                                                 <td>F</td>
                                                         </t>
@@ -152,20 +176,38 @@
                                                         <t t-foreach="subjects" t-as="subject">
                                                             <t t-if="get_marks(exam,subject,student)">
                                                                 <t t-foreach="get_marks(exam,subject,student)" t-as="mark">
-                                                                    <td><t t-esc="mark.tut_mark" /></td>
-                                                                    <td><t t-esc="mark.subj_mark" /></td>
-                                                                    <td><t t-esc="mark.obj_mark" /></td>
-                                                                    <td><t t-esc="mark.prac_mark" /></td>
-                                                                    <td><t t-esc="mark.mark_scored" /></td>
-                                                                    <t t-set="exam_total" t-value="exam_total + mark.mark_scored"/>
-                                                                    <td><t t-esc="mark.letter_grade" /></td>
+                                                                    <t t-if="subject.tut_mark>0">
+                                                                     <td><t t-esc="mark.tut_mark" /></td>
+                                                                 </t>
+
+                                                                 <t t-if="subject.subj_mark>0">
+                                                                     <td><t t-esc="mark.subj_mark" /></td>
+                                                                 </t>
+                                                                <t t-if="subject.obj_mark>0">
+                                                                     <td><t t-esc="mark.obj_mark" /></td>
+                                                                 </t>
+                                                                <t t-if="subject.prac_mark>0">
+                                                                     <td><t t-esc="mark.prac_mark" /></td>
+                                                                 </t>
+                                                                <td><t t-esc="mark.mark_scored" /></td>
+                                                                <t t-set="exam_total" t-value="exam_total + mark.mark_scored"/>
+                                                                <td><t t-esc="mark.letter_grade" /></td>
                                                                 </t>
                                                             </t>
                                                             <t t-else="">
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
+                                                                <t t-if="subject.tut_mark>0">
+                                                                     <td><t t-esc="0" /></td>
+                                                                 </t>
+
+                                                                 <t t-if="subject.subj_mark>0">
+                                                                     <td><t t-esc="0" /></td>
+                                                                 </t>
+                                                                <t t-if="subject.obj_mark>0">
+                                                                     <td><t t-esc="0" /></td>
+                                                                 </t>
+                                                                <t t-if="subject.prac_mark>0">
+                                                                     <td><t t-esc="0" /></td>
+                                                                 </t>
                                                                 <td>0</td>
                                                                 <td>F</td>
                                                             </t>
