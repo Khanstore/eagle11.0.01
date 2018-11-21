@@ -7,7 +7,7 @@
                 <t t-foreach="get_students(docs)" t-as="student">
 
 
-                    <t t-call="web.external_layout">
+                    <!--<t t-call="web.external_layout">-->
                         <style>
                             table, th, td {
                                      border: 1px solid black;
@@ -26,8 +26,12 @@
                             }
 
                         </style>
+                        <div class="header">
+                            This Is Header
+                        </div>
                         <div class="page">
                             <div class="oe_structure">
+
                                 <div class="row">
                                     <div class="right_top" >
                                         <table>
@@ -104,7 +108,7 @@
                             </div>
 
                         </div>
-                    </t>
+                    <!--</t>-->
                 </t>
             </t>
         </template>

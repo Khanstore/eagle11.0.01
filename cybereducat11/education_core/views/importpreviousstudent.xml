@@ -12,7 +12,8 @@
                         <field name="date"/>
                         <field name="import_qty"/>
                         <field name="register_id"/>
-                        <field name="assign_class"/>
+                        <field name="level" invisible="1"/>
+                        <field name="assign_class" domain="[('class_id.id','=',level)]"/>
                     </group>
                     <group string="Previous Data">
                         <field name="import_group"/>

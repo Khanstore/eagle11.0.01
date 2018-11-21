@@ -121,8 +121,10 @@ class acdemicTranscripts(models.AbstractModel):
                     gp = gp + rec.grade_point
                     count = count + 1
 
-
-        return round(gp/count,2)
+        if count==0:
+            return 0
+        else :
+            return round(gp/count,2)
         # float("{0:.2f}".format(gp/count))
     def get_row_count(self,student_history,exam):
         student = student_history.student_id

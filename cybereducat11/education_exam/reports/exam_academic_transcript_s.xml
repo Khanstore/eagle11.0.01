@@ -305,7 +305,8 @@
                                                 <t t-if="exam_first">
                                                     <td colspan="16">Total Mark for Additional Subject:
                                                                 (percentage of total marks for additional Subject:
-                                                        <t t-esc="round(optional_obtained_total/optional_total * 100,2)"/>
+                                                        <t t-if="optional_total!=0"><t t-esc="round(optional_obtained_total/optional_total * 100,2)"/>
+                                                        </t>
                                                         %)</td>
                                                     <!--round(6.2/9,2)-->
                                                 </t>

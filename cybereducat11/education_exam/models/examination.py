@@ -55,7 +55,15 @@ class EducationExam(models.Model):
 
     @api.multi
     def close_exam(self):
-        self.state = 'close'
+        all_completed=1
+        valuation_status=self.env['education.exam.valuation'].search([('exam_id','=',self.id)])
+        for line in valuation_status:
+            if line.state != 'completed':
+                all_completed=0
+        if all_completed==1:
+            self.state = 'close'
+        else:
+            raise ValidationError(_("Comlete all valuation first!"))
 
     @api.multi
     def cancel_exam(self):
