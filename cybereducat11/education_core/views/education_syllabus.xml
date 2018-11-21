@@ -45,6 +45,7 @@
 
                         <field name="subject_type"/>
                         <field name="selection_type"/>
+                        <field name="evaluation_type"/>
                         <field name="description"/>
                     </group>
                     <group col="4"  string="Mark Distribution">

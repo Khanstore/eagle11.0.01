@@ -29,7 +29,7 @@ class examEvaluation(models.AbstractModel):
             for student in student_list:
                 total=0
                 mark_line = self.env['results.subject.line'].search(
-                    [('student_id', '=', student.id), ('exam_id', '=', exam.id)])
+                    [('student_id', '=', student.student_id.id), ('exam_id', '=', exam.id)])
                 for line in mark_line:
                     if line.mark_scored:
                         total=total+line.mark_scored

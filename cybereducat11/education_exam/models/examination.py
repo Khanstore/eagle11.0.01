@@ -105,6 +105,7 @@ class SubjectLine(models.Model):
     _name = 'education.subject.line'
     _rec_name = 'subject_id'
     subject_id = fields.Many2one('education.syllabus', string='Subject', required=True)
+    display=fields.Char(related='subject_id.name')
     date = fields.Date(string='Date', required=True)
     time_from = fields.Float(string='Time From', required=True)
     time_to = fields.Float(string='Time To', required=True)

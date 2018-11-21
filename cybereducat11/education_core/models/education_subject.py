@@ -73,8 +73,12 @@ class EducationSyllabus(models.Model):
          ('both', 'Both'), ('other', 'Other')],
         'Subject Type', default="theory", required=True)
     selection_type = fields.Selection(
-        [('compulsory', 'Compulsory'), ('elective', 'Elective'),('optional', 'Optional')],
+        [('compulsory', 'Compulsory'), ('elective', 'Elective')],
         'Selection Type', default="compulsory", required=True)
+    evaluation_type = fields.Selection(
+        [('general', 'General'), ('optional', 'Optional'),('extra','Extra')],
+        'Evaluation Type', default="general", required=True)
+
     # total_hours = fields.Float(string='Total Hours')
     total_mark=fields.Float('Total')
     pass_mark=fields.Float('Pass')

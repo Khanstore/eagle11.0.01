@@ -70,11 +70,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="left">
-                                         <table>
+                                         <table width="100%">
                                             <tr>
                                                 <t t-foreach="get_exams(docs)" t-as="exam">
                                                 <td>
-                                        <table><tr>
+                                        <table width="100%"><tr>
                                             <t t-if="exam_first"> <td rowspan="2">Subject</td><td rowspan="2">Paper</td><td rowspan="2">Full Mark</td></t>
         <td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td></tr><tr>
                 <td>Tut</td><td>Sub</td><td>Obj</td><td>Prac</td><td>Total</td><td>Highest</td><td>LG</td><td>GP</td><td>GPA</td></tr>
@@ -86,8 +86,8 @@
                                             <td ><strong> <span t-field="s.prac_mark"/> </strong></td>
                                             <td ><strong> <span t-field="s.mark_scored"/> </strong></td>
                                             <td ><strong> Highest </strong></td>
-                                            <td ><strong><span t-field="s.grade"/> </strong></td>
-                                            <td ><strong> <span t-field="s.score"/> </strong></td>
+                                            <td ><strong><span t-field="s.letter_grade"/> </strong></td>
+                                            <td ><strong> <span t-field="s.grade_point"/> </strong></td>
                                             <td ><strong> GPA </strong></td>
                           </tr>
                       </t>
