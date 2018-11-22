@@ -4,10 +4,44 @@
 
         <template id="report_exam_academic_transcript">
             <t t-call="web.html_container">
+                <t t-set="exams" t-value="get_exams(docs)" />
+                <t t-set="mark_colum" t-value="1"/>
+                <t t-set="tut_mark" t-value="false"/>
+                <t t-set="subj_mark" t-value="false"/>
+                <t t-set="obj_mark" t-value="false"/>
+                <t t-set="prac_mark" t-value="false"/>
+
+                <t t-foreach="exams"  t-as="ex">
+                    <t t-foreach="get_subjects(ex)" t-as="sub">
+                        <t t-if="sub.tut_mark>0">
+                            <t t-set="tut_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.subj_mark>0">
+                            <t t-set="subj_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.obj_mark>0">
+                            <t t-set="obj_mark" t-value="1"/>
+                        </t>
+                        <t t-if="sub.prac_mark>0">
+                            <t t-set="prac_mark" t-value="1"/>
+                        </t>
+                    </t>
+                </t>
+                    <t t-if="tut_mark>0">
+                            <t t-set="mark_colum" t-value="mark_colum+1"/>
+                    </t>
+                    <t t-if="prac_mark>0">
+                            <t t-set="mark_colum" t-value="mark_colum+1"/>
+                    </t>
+                    <t t-if="subj_mark>0">
+                            <t t-set="mark_colum" t-value="mark_colum+1"/>
+                    </t>
+                    <t t-if="obj_mark>0">
+                            <t t-set="mark_colum" t-value="mark_colum+1"/>
+                    </t>
+
                 <t t-foreach="get_students(docs)" t-as="student">
-
-
-                    <!--<t t-call="web.external_layout">-->
+                    <t t-call="web.external_layout">
                         <style>
                             table, th, td {
                                      border: 1px solid black;
@@ -24,11 +58,7 @@
                             float:right;
                             padding-top:10px;
                             }
-
                         </style>
-                        <div class="header">
-                            This Is Header
-                        </div>
                         <div class="page">
                             <div class="oe_structure">
 
@@ -43,13 +73,11 @@
                                                         <td> <span t-field="g.score"/></td>
                                                     </tr>
                                                 </t>
-
                                         </table>
                                     </div>
-
                                 </div>
                                 <div class="row">
-                                     <div class="right" padding-top="10px">
+                                    <div class="right" padding-top="10px">
                                         <table>
                                             <tr><td colspan="2">Information</td><td colspan="2">Co-curricular Activity </td></tr>
                                             <tr><td> Number of Students:</td><td width="40px"></td><td> Behavior</td><td width="40px"></td></tr>
@@ -70,7 +98,6 @@
                                                         </strong></td> </tr>
                                          </table>
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <div class="left">
@@ -78,37 +105,75 @@
                                             <tr>
                                                 <t t-foreach="get_exams(docs)" t-as="exam">
                                                 <td>
-                                        <table width="100%"><tr>
-                                            <t t-if="exam_first"> <td rowspan="2">Subject</td><td rowspan="2">Paper</td><td rowspan="2">Full Mark</td></t>
-        <td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td></tr><tr>
-                <td>Tut</td><td>Sub</td><td>Obj</td><td>Prac</td><td>Total</td><td>Highest</td><td>LG</td><td>GP</td><td>GPA</td></tr>
-                      <t t-foreach="get_subjects(exam)" t-as="s" >
-                          <tr><t t-if="exam_first"><td><span t-field="s.subject_id.display"/> </td><td><span t-field="s.subject_id.paper"/> </td><td><span t-field="s.max_mark"/> </td></t>
-                          <td ><strong> <span t-field="s.tut_mark"/> </strong></td>
-                                            <td ><strong> <span t-field="s.subj_mark"/> </strong></td>
-                                            <td ><strong> <span t-field="s.obj_mark"/> </strong></td>
-                                            <td ><strong> <span t-field="s.prac_mark"/> </strong></td>
-                                            <td ><strong> <span t-field="s.mark_scored"/> </strong></td>
-                                            <td ><strong> Highest </strong></td>
-                                            <td ><strong><span t-field="s.letter_grade"/> </strong></td>
-                                            <td ><strong> <span t-field="s.grade_point"/> </strong></td>
-                                            <td ><strong> GPA </strong></td>
-                          </tr>
-                      </t>
+                                                    <table width="100%">
+                                                        <tr>
+                                                            <t t-if="exam_first"> <td rowspan="2">Subject</td>
+                                                                <td rowspan="2">Paper</td>
+                                                                <td t-att-colspan="mark_colum" >Full Mark</td>
+                                                            </t>
+                                                            <td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <t t-if="tut_mark==1">
+                                                                <td>Tut</td>
+                                                            </t>
+                                                            <t t-if="subj_mark==1">
+                                                                <td>Subj</td>
+                                                            </t>
+                                                            <t t-if="obj_mark==1">
+                                                                <td>Obj</td>
+                                                            </t>
+                                                            <t t-if="prac_mark==1">
+                                                                <td>Prac</td>
+                                                            </t>
+                                                                <td>Total</td>
 
-
-                </table>
+                                                            <t t-if="tut_mark==1">
+                                                                <td>Tut</td>
+                                                            </t>
+                                                            <t t-if="subj_mark==1">
+                                                                <td>Subj</td>
+                                                            </t>
+                                                            <t t-if="obj_mark==1">
+                                                                <td>Obj</td>
+                                                            </t>
+                                                            <t t-if="prac_mark==1">
+                                                                <td>Prac</td>
+                                                            </t>
+                                                            <td>Total</td>
+                                                            <td>Highest</td>
+                                                            <td>LG</td>
+                                                            <td>GP</td>
+                                                            <td>GPA</td>
+                                                        </tr>
+                                                            <t t-foreach="get_subjects(exam)" t-as="s" >
+                                                                <tr>
+                                                                    <t t-if="exam_first">
+                                                                        <td><span t-field="s.subject_id.display"/> </td>
+                                                                        <td><span t-field="s.subject_id.paper"/> </td>
+                                                                        <td><span t-field="s.tut_mark"/> </td>
+                                                                    </t>
+                                                                    <td ><strong> <span t-field="s.tut_mark"/> </strong></td>
+                                                                    <td ><strong> <span t-field="s.subj_mark"/> </strong></td>
+                                                                    <td ><strong> <span t-field="s.obj_mark"/> </strong></td>
+                                                                    <td ><strong> <span t-field="s.prac_mark"/> </strong></td>
+                                                                    <td ><strong> <span t-field="s.mark_scored"/> </strong></td>
+                                                                    <td ><strong> Highest </strong></td>
+                                                                    <td ><strong><span t-field="s.letter_grade"/> </strong></td>
+                                                                    <td ><strong> <span t-field="s.grade_point"/> </strong></td>
+                                                                    <td ><strong> GPA </strong></td>
+                                                                </tr>
+                                                            </t>
+                                                    </table>
             </td>
          </t>
     </tr>
 </table>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    <!--</t>-->
+                    </t>
                 </t>
             </t>
         </template>

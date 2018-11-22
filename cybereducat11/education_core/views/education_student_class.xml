@@ -45,6 +45,7 @@
                              <field name="student_list" attrs="{'readonly': [('state', '=', 'done')]}"
                                     context="{'default_class_id': class_id}">
                                  <tree string="Student List" editable="bottom">
+                                     <field name="stu_id"/>
                                      <field name="student_id"/>
                                      <field name="roll_no"/>
                                      <field name="class_id" invisible="True"/>

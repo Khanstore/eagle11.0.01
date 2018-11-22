@@ -100,6 +100,7 @@ class EducationStudentList(models.Model):
 
     connect_id = fields.Many2one('education.student.class', string='Class')
     student_id = fields.Many2one('education.student', string='Student')
+    stu_id=fields.Char(string="Id",related='student_id.student_id')
     class_id = fields.Many2one('education.class', string='Level')
     section_id = fields.Many2one('education.class.division', string='Class')
     roll_no = fields.Integer( string='Roll No')
