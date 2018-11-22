@@ -22,11 +22,12 @@ class acdemicTranscript(models.AbstractModel):
 
         return student
 
-    def get_subjects(self, obj):
+    def get_subjects(self, obj,result_type):
         object=self.env['education.exam.results'].browse(obj.id)
         subjs = []
         for subj in object.subject_line:
-            subjs.extend(subj)
+            if subj.subject_id.evaluation_type==result_type:
+                subjs.extend(subj)
         return subjs
     def get_gradings(self,obj):
         grading=self.env['education.result.grading'].search([('id','>','0')],order='min_per desc',)

@@ -254,6 +254,7 @@ class StudentApplication(models.Model):
                 'per_state_id': rec.per_state_id.id,
                 'per_country_id': rec.per_country_id.id,
                 'per_zip': rec.per_zip,
+                'student_category':rec.student_category,
                 'gender': rec.gender,
                 'date_of_birth': rec.date_of_birth,
                 'blood_group': rec.blood_group,

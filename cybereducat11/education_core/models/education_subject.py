@@ -76,7 +76,7 @@ class EducationSyllabus(models.Model):
         [('compulsory', 'Compulsory'), ('elective', 'Elective')],
         'Selection Type', default="compulsory", required=True)
     evaluation_type = fields.Selection(
-        [('general', 'General'), ('optional', 'Optional'),('extra','Extra')],
+        [('general', 'General'), ('additional', 'Additional'),('extra','Extra')],
         'Evaluation Type', default="general", required=True)
 
     # total_hours = fields.Float(string='Total Hours')

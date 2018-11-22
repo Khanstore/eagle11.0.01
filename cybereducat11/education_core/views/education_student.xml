@@ -118,6 +118,7 @@
                                 <group>
                                     <field name="company_id" groups="base.group_multi_company"/>
                                     <field name="medium"/>
+                                    <field name="student_category"/>
                                 </group>
                             </group>
                             <separator string="Student Info"/>

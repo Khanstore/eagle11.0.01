@@ -88,6 +88,8 @@ class EducationStudent(models.Model):
     is_same_address = fields.Boolean(string="Is same Address?")
     nationality = fields.Many2one('res.country', string='Nationality', ondelete='restrict',default=19,)
     application_id = fields.Many2one('education.application', string="Application No")
+    student_category = fields.Selection([('I', "Internal"),
+                                         ('E', "External")], 'Category')
     class_history_ids = fields.One2many('education.class.history', 'student_id', string="Application No")
     roll_no=fields.Integer('Roll No')
     student_id=fields.Char('Student Id')
