@@ -18,7 +18,7 @@ class EducationExam(models.Model):
     class_division_hider = fields.Char(string='Class Division Hider')
     start_date = fields.Date(string='Start Date', required=True)
     end_date = fields.Date(string='End Date', required=True)
-    subject_line = fields.One2many('education.subject.line', 'exam_id', string='Subjects')
+    subject_line = fields.One2many('exam.subject.line', 'exam_id', string='Subjects')
     state = fields.Selection([('draft', 'Draft'), ('ongoing', 'On Going'), ('close', 'Closed'), ('cancel', 'Canceled')],
                              default='draft')
     academic_year = fields.Many2one('education.academic.year', string='Academic Year',
@@ -98,7 +98,7 @@ class EducationExam(models.Model):
     @api.multi
     def get_subjects(self):
         for rec in self:
-            subjline_obj=self.env['education.subject.line']
+            subjline_obj=self.env['exam.subject.line']
 
             subjects=self.env['education.syllabus'].search([('class_id','=',rec.class_id.id),('academic_year','=',rec.academic_year.id)])  #.search([('class_id', '=', self.id)])
             for subject in subjects :
@@ -110,7 +110,7 @@ class EducationExam(models.Model):
                       }
                 subjline_obj.create(data)
 class SubjectLine(models.Model):
-    _name = 'education.subject.line'
+    _name = 'exam.subject.line'
     _rec_name = 'subject_id'
     subject_id = fields.Many2one('education.syllabus', string='Subject', required=True)
     display=fields.Char(related='subject_id.name')

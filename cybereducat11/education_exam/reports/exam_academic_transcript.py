@@ -35,7 +35,9 @@ class acdemicTranscript(models.AbstractModel):
         for grade in grading:
             grades.extend(grade)
         return grades
-
+    def get_marks(self,exam,subject,student):
+        marks=self.env['results.subject.line'].search([('exam_id','=',exam.id),('subject_id','=',subject.subject_id.id),('student_id','=',student.id)])
+        return marks
 
     def get_date(self, date):
         date1 = datetime.strptime(date, "%Y-%m-%d")
@@ -54,5 +56,6 @@ class acdemicTranscript(models.AbstractModel):
             'get_subjects': self.get_subjects,
             'get_gradings':self.get_gradings,
             'get_date': self.get_date,
+            'get_marks': self.get_marks,
             # 'get_total': self.get_total,
         }
