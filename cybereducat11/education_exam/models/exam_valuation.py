@@ -8,10 +8,9 @@ from odoo.exceptions import UserError
 
 class EducationExamValuation(models.Model):
     _name = 'education.exam.valuation'
-    exam_subject_line=fields.Many2one('exam.subject.line','Subject')
 
     name = fields.Char(string='Name', default='New')
-    exam_id = fields.Many2one('education.exam', string='Exam', related='exam_subject_line.exam_id')
+    exam_id = fields.Many2one('education.exam', string='Exam', required=True, domain=[('state', '=', 'ongoing')])
     class_id = fields.Many2one('education.class', string='Class', required=True)
     division_id = fields.Many2one('education.class.division', string='Division', required=True)
     subject_id = fields.Many2one('education.syllabus', string='Subject', required=True)
@@ -152,9 +151,7 @@ class EducationExamValuation(models.Model):
             search_result = result_obj.search(
                 [('exam_id', '=', self.exam_id.id), ('division_id', '=', self.division_id.id),
                  ('student_id', '=', students.student_id.id)])
-            print(len(search_result)<1)
             if len(search_result) < 1:
-
                 result_data = {
                     'name': self.name,
                     'exam_id': self.exam_id.id,
