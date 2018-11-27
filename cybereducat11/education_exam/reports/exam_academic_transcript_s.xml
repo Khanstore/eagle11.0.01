@@ -311,7 +311,9 @@
                                                 <t t-if="exam_first">
                                                     <td colspan="16">Total Mark Without Additional Subject:
                                                                 (percentage of total marks Without additional Subject:
-                                                        <t t-esc="round(exam_obtained_total/exam_total * 100,2)"/> %)</td>
+                                                        <t t-if="exam_total !=0">
+                                                            <t t-esc="round(exam_obtained_total/exam_total * 100,2)"/>
+                                                        </t>%)</td>
                                                     <!--round(6.2/9,2)-->
                                                 </t>
                                                 <td> <t t-esc="exam_obtained_total"/></td><td colspan="5"></td>
@@ -410,7 +412,10 @@
                                             </t>
                                         </tr>
 
-                                        <tr><td colspan="16">Total Marks with Additional Subject:(percentage of total mark With Additional Subject:<t t-esc="round((optional_obtained_total-(optional_total*40/100)+exam_obtained_total)/exam_total*100,2)"/>%)</td>
+                                        <tr><td colspan="16">Total Marks with Additional Subject:(percentage of total mark With Additional Subject:
+                                            <t t-if="exam_total != 0">
+                                                <t t-esc="round((optional_obtained_total-(optional_total*40/100)+exam_obtained_total)/exam_total*100,2)"/>
+                                            </t>%)</td>
                                             <td><t t-esc="marksFromAdditional + exam_obtained_total"/> </td><td colspan="3"></td><td ><t t-esc="optional_gpa-2"/></td><td></td></tr>
 
                                         </t>
