@@ -46,7 +46,7 @@
                            widget="many2many_tags" options="{'no_create': True}"/>
                     <field name="selective_subjects" domain="[('class_id','=',level),('selection_type','=','elective')]"
                            widget="many2many_tags" options="{'no_create': True}"/>
-                    <field name="optional_subjects"  domain="[('class_id','=',level),('selection_type','=','optional')]"
+                    <field name="optional_subjects"  domain="[('class_id','=',level),('selection_type','=','elective')]"
                            widget="many2many_tags" options="{'no_create': True}"/>
                 </group>
             </form>

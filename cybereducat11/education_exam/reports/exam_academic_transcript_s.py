@@ -111,7 +111,7 @@ class acdemicTranscripts(models.AbstractModel):
         highest = self.env['results.subject.line'].search(
             [('exam_id', '=', exam.id), ('subject_id', '=', subject.id)], limit=1, order='mark_scored DESC')
         return highest
-    def get_gpa(self,student_history,exam,optional):
+    def get_gpa(self,student_history,exam,optional,evaluation_type):
         student = student_history.student_id
         gp=0
         count=0
