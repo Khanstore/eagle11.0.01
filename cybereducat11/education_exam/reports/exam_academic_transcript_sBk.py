@@ -32,19 +32,13 @@ class acdemicTranscripts(models.AbstractModel):
 
         return student
 
-    def get_subjects(self,student,object,selection_type,evaluation_type):
+    def get_subjects(self,student,object):
         student_history=self.env['education.class.history'].search([('id', '=', student.id),('academic_year_id',"=",object.academic_year.id)])
         subjs = []
-        if selection_type=='non_optional':
-            for subj in student_history.compulsory_subjects:
-                if subj.evaluation_type==evaluation_type :
-                    subjs.extend(subj)
-            for subj in student_history.selective_subjects:
-                if subj.evaluation_type==evaluation_type:
-                    subjs.extend(subj)
-        else:
-            for subj in student_history.optional_subjects:
-                subjs.extend(subj)
+        for subj in student_history.compulsory_subjects:
+            subjs.extend(subj)
+        for subj in student_history.selective_subjects:
+            subjs.extend(subj)
 
         return subjs
     def get_optional_subjects(self,student_history,object):
@@ -94,7 +88,7 @@ class acdemicTranscripts(models.AbstractModel):
         exam_total=0
 
         if optional!='optional':
-            subjects = self.get_subjects(student, object,'optional','general')
+            subjects = self.get_subjects(student, object)
             for subject in subjects:
                 marks = self.env['results.subject.line'].search(
                         [('exam_id', '=', exam.id),('subject_id', '=', subject.id)],limit=1)

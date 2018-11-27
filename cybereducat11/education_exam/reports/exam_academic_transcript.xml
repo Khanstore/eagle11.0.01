@@ -112,531 +112,531 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="right" padding-top="10px">
-                                        <table>
-                                            <tr><td colspan="2">Information</td><td colspan="2">Co-curricular Activity </td></tr>
-                                            <tr><td> Number of Students:</td><td width="40px"></td><td> Behavior</td><td width="40px"></td></tr>
-                                            <tr><td> Total working days:</td><td></td><td> Sports Program:</td><td></td></tr>
-                                            <tr><td> Attendance:</td><td></td><td> Uniform:</td><td></td></tr>
-                                            <tr><td> Percentage of attendance:</td><td></td><td> Cultural Activities:</td><td></td></tr>
-                                        </table>
-                                    </div>
-                                    <div class="left">
-                                         <table><tr><td><strong>ID : <span t-field="student.student_id"/></strong></td>
-                                             <td><strong>Roll : <span t-field="student.roll_no"/></strong></td>
-                                             <td><strong>Section : <span t-field="student.class_id.section_id"/>
-                                                 <t t-if="student.class_id.display">
-                                                     (<span t-field="student.class_id.display"/>)
-                                                 </t>
-                                             </strong></td>
+                                <!--<div class="row">-->
+                                    <!--<div class="right" padding-top="10px">-->
+                                        <!--<table>-->
+                                            <!--<tr><td colspan="2">Information</td><td colspan="2">Co-curricular Activity </td></tr>-->
+                                            <!--<tr><td> Number of Students:</td><td width="40px"></td><td> Behavior</td><td width="40px"></td></tr>-->
+                                            <!--<tr><td> Total working days:</td><td></td><td> Sports Program:</td><td></td></tr>-->
+                                            <!--<tr><td> Attendance:</td><td></td><td> Uniform:</td><td></td></tr>-->
+                                            <!--<tr><td> Percentage of attendance:</td><td></td><td> Cultural Activities:</td><td></td></tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                    <!--<div class="left">-->
+                                         <!--<table><tr><td><strong>ID : <span t-field="student.student_id"/></strong></td>-->
+                                             <!--<td><strong>Roll : <span t-field="student.roll_no"/></strong></td>-->
+                                             <!--<td><strong>Section : <span t-field="student.class_id.section_id"/>-->
+                                                 <!--<t t-if="student.class_id.display">-->
+                                                     <!--(<span t-field="student.class_id.display"/>)-->
+                                                 <!--</t>-->
+                                             <!--</strong></td>-->
 
-                                             <td><strong>Student Type :
-                                                 <t t-if="student.student_category=='I'">I</t>
-                                                 <t t-else="">E</t>
-                                             </strong>
-                                             </td></tr>
-                                             <tr><td colspan="4"><strong> Name : <span t-field="student.name"/>
-                                                        <span t-field="student.middle_name"/>
-                                                        <span t-field="student.last_name"/>
-                                                    </strong></td></tr>
-                                             <tr><td colspan="4"><strong> Father : <span t-field="student.father_name"/>
-                                                        </strong></td></tr>
-                                             <tr><td colspan="4" ><strong> Mother : <span t-field="student.mother_name"/>
-                                                        </strong></td> </tr>
-                                         </table>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="left">
-                                         <table width="100%">
-                                            <tr>
-                                                <t t-foreach="get_exams(docs)" t-as="exam">
-
-
-                                                    <t t-set="total_tut" t-value="0"/>
-                                                    <t t-set="total_obj" t-value="0"/>
-                                                    <t t-set="total_subj" t-value="0"/>
-                                                    <t t-set="total_prac" t-value="0"/>
-                                                    <t t-set="total_total" t-value="0"/>
-                                                    <t t-set="obtained_total_tut" t-value="0"/>
-                                                    <t t-set="obtained_total_obj" t-value="0"/>
-                                                    <t t-set="obtained_total_subj" t-value="0"/>
-                                                    <t t-set="obtained_total_prac" t-value="0"/>
-                                                    <t t-set="obtained_total_total" t-value="0"/>
+                                             <!--<td><strong>Student Type :-->
+                                                 <!--<t t-if="student.student_category=='I'">I</t>-->
+                                                 <!--<t t-else="">E</t>-->
+                                             <!--</strong>-->
+                                             <!--</td></tr>-->
+                                             <!--<tr><td colspan="4"><strong> Name : <span t-field="student.name"/>-->
+                                                        <!--<span t-field="student.middle_name"/>-->
+                                                        <!--<span t-field="student.last_name"/>-->
+                                                    <!--</strong></td></tr>-->
+                                             <!--<tr><td colspan="4"><strong> Father : <span t-field="student.father_name"/>-->
+                                                        <!--</strong></td></tr>-->
+                                             <!--<tr><td colspan="4" ><strong> Mother : <span t-field="student.mother_name"/>-->
+                                                        <!--</strong></td> </tr>-->
+                                         <!--</table>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="row">-->
+                                    <!--<div class="left">-->
+                                         <!--<table width="100%">-->
+                                            <!--<tr>-->
+                                                <!--<t t-foreach="get_exams(docs)" t-as="exam">-->
 
 
-
-                                                    <td>
-                                                        <table width="100%">
-                                                            <tr>
-                                                                <t t-if="exam_first"> <td rowspan="2">Subject</td>
-                                                                    <td rowspan="2">Paper</td>
-                                                                    <td t-att-colspan="mark_colum" >Full Mark</td>
-                                                                </t>
-                                                                <td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <t t-if="tut_mark==1">
-                                                                    <td>Tut</td>
-                                                                </t>
-                                                                <t t-if="subj_mark==1">
-                                                                    <td>Subj</td>
-                                                                </t>
-                                                                <t t-if="obj_mark==1">
-                                                                    <td>Obj</td>
-                                                                </t>
-                                                                <t t-if="prac_mark==1">
-                                                                    <td>Prac</td>
-                                                                </t>
-                                                                    <td>Total</td>
-
-                                                                <t t-if="tut_mark==1">
-                                                                    <td>Tut</td>
-                                                                </t>
-                                                                <t t-if="subj_mark==1">
-                                                                    <td>Subj</td>
-                                                                </t>
-                                                                <t t-if="obj_mark==1">
-                                                                    <td>Obj</td>
-                                                                </t>
-                                                                <t t-if="prac_mark==1">
-                                                                    <td>Prac</td>
-                                                                </t>
-                                                                <td>Total</td>
-                                                                <td>Highest</td>
-                                                                <td>LG</td>
-                                                                <td>GP</td>
-                                                                <td>GPA</td>
-                                                            </tr>
-                                                                <t t-foreach="get_subjects(exam,'general')" t-as="s" >
-                                                                    <t t-set="obtained" t-value="get_marks(exam,s,student)"/>
-                                                                    <tr>
-                                                                        <t t-if="exam_first">
-                                                                                <td><span t-field="s.subject_id.display"/> </td>
-                                                                                <td><span t-field="s.subject_id.paper"/> </td>
-                                                                            </t>
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.tut_mark"/> </strong></td>
-                                                                                <t t-set="total_tut" t-value="total_tut +s.subject_id.tut_mark"/>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.subj_mark"/> </strong></td>
-                                                                                <t t-set="total_subj" t-value="total_subj +s.subject_id.subj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.obj_mark"/> </strong></td>
-                                                                                <t t-set="total_obj" t-value="total_obj +s.subject_id.obj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.prac_mark"/> </strong></td>
-                                                                                <t t-set="total_prac" t-value="total_prac +s.subject_id.prac_mark"/>
-                                                                            </t>
-                                                                            <td ><strong> <span t-field="s.subject_id.total_mark"/> </strong></td>
-                                                                            <t t-set="total_total" t-value="total_total +s.subject_id.total_mark"/>
-
-
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.tut_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_tut" t-value="obtained_total_tut +obtained.tut_mark"/>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.subj_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_subj" t-value="obtained_total_subj +obtained.subj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.obj_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_obj" t-value="obtained_total_obj +obtained.obj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.prac_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_prac" t-value="obtained_total_prac +obtained.tut_prac"/>
-                                                                            </t>
-                                                                            <td ><strong> <span t-field="obtained.mark_scored"/> </strong></td>
-                                                                            <t t-set="obtained_total_total" t-value="obtained_total_total +obtained.mark_scored"/>
-                                                                            <td ><strong> <span t-esc="get_highest(exam,s)"/> </strong></td>
-                                                                            <td ><strong> <span t-field="obtained.letter_grade"/> </strong></td>
-                                                                            <td ><strong> <span t-field="obtained.grade_point"/> </strong></td>
-                                                                            <td ><strong> <span t-esc="get_gpa(student,exam,'general')"/> </strong></td>
-                                                                            <!--<td ><strong> <span t-field="s.mark_scored"/> </strong></td>-->
-                                                                            <!--<td ><strong> Highest </strong></td>-->
-                                                                            <!--<td ><strong><span t-field="s.letter_grade"/> </strong></td>-->
-                                                                            <!--<td ><strong> <span t-field="s.grade_point"/> </strong></td>-->
-                                                                            <!--<td ><strong> GPA </strong></td>-->
-                                                                    </tr>
-                                                                    <t t-if="s_last">
-                                                                        <tr>
-                                                                            <td colspan="2">Total</td>
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td><span t-esc="total_tut"/></td>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td><span t-esc="total_subj"/></td>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td><span t-esc="total_obj"/></td>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td><span t-esc="total_prac"/></td>
-                                                                            </t>
-                                                                            <td><span t-esc="total_total"/></td>
-
-
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td><span t-esc="obtained_total_tut"/></td>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td><span t-esc="obtained_total_subj"/></td>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td><span t-esc="obtained_total_obj"/></td>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td><span t-esc="obtained_total_prac"/></td>
-                                                                            </t>
-                                                                            <td><span t-esc="obtained_total_total"/></td>
-
-                                                                        </tr>
-
-                                                                    </t>
-                                                                </t>
-
-                                                        </table>
-                                                    </td>
-                                                </t>
-                                            </tr>
-
-<!--additional subject start-->
-                                            <t t-if="additional_subject != 0">
-                                                 <tr>
-                                                    <t t-foreach="get_exams(docs)" t-as="exam">
-
-
-                                                        <t t-set="total_tut" t-value="0"/>
-                                                    <t t-set="total_obj" t-value="0"/>
-                                                    <t t-set="total_subj" t-value="0"/>
-                                                    <t t-set="total_prac" t-value="0"/>
-                                                    <t t-set="total_total" t-value="0"/>
-                                                    <t t-set="obtained_total_tut" t-value="0"/>
-                                                    <t t-set="obtained_total_obj" t-value="0"/>
-                                                    <t t-set="obtained_total_subj" t-value="0"/>
-                                                    <t t-set="obtained_total_prac" t-value="0"/>
-                                                    <t t-set="obtained_total_total" t-value="0"/>
-
-
-                                                    <td>
-                                                        <table width="100%">
-                                                            <tr>
-                                                                <t t-if="exam_first"> <td rowspan="2">Subject</td>
-                                                                    <td rowspan="2">Paper</td>
-                                                                    <td t-att-colspan="mark_colum" >Full Mark</td>
-                                                                </t>
-                                                                <td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <t t-if="tut_mark==1">
-                                                                    <td>Tut</td>
-                                                                </t>
-                                                                <t t-if="subj_mark==1">
-                                                                    <td>Subj</td>
-                                                                </t>
-                                                                <t t-if="obj_mark==1">
-                                                                    <td>Obj</td>
-                                                                </t>
-                                                                <t t-if="prac_mark==1">
-                                                                    <td>Prac</td>
-                                                                </t>
-                                                                    <td>Total</td>
-
-                                                                <t t-if="tut_mark==1">
-                                                                    <td>Tut</td>
-                                                                </t>
-                                                                <t t-if="subj_mark==1">
-                                                                    <td>Subj</td>
-                                                                </t>
-                                                                <t t-if="obj_mark==1">
-                                                                    <td>Obj</td>
-                                                                </t>
-                                                                <t t-if="prac_mark==1">
-                                                                    <td>Prac</td>
-                                                                </t>
-                                                                <td>Total</td>
-                                                                <td>Highest</td>
-                                                                <td>LG</td>
-                                                                <td>GP</td>
-                                                                <td>GPA</td>
-                                                            </tr>
-                                                                <t t-foreach="get_subjects(exam,'additional')" t-as="s" >
-                                                                    <t t-set="obtained" t-value="get_marks(exam,s,student)"/>
-                                                                    <tr>
-                                                                        <t t-if="exam_first">
-                                                                                <td><span t-field="s.subject_id.display"/> </td>
-                                                                                <td><span t-field="s.subject_id.paper"/> </td>
-                                                                            </t>
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.tut_mark"/> </strong></td>
-                                                                                <t t-set="total_tut" t-value="total_tut +s.subject_id.tut_mark"/>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.subj_mark"/> </strong></td>
-                                                                                <t t-set="total_subj" t-value="total_subj +s.subject_id.subj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.obj_mark"/> </strong></td>
-                                                                                <t t-set="total_obj" t-value="total_obj +s.subject_id.obj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.prac_mark"/> </strong></td>
-                                                                                <t t-set="total_prac" t-value="total_prac +s.subject_id.prac_mark"/>
-                                                                            </t>
-                                                                            <td ><strong> <span t-field="s.subject_id.total_mark"/> </strong></td>
-                                                                            <t t-set="total_total" t-value="total_total +s.subject_id.total_mark"/>
-
-
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.tut_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_tut" t-value="obtained_total_tut +obtained.tut_mark"/>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.subj_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_subj" t-value="obtained_total_subj +obtained.subj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.obj_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_obj" t-value="obtained_total_obj +obtained.obj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.prac_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_prac" t-value="obtained_total_prac +obtained.tut_prac"/>
-                                                                            </t>
-                                                                            <td ><strong> <span t-field="obtained.mark_scored"/> </strong></td>
-                                                                            <t t-set="obtained_total_total" t-value="obtained_total_total +obtained.mark_scored"/>
-                                                                            <td ><strong> <span t-esc="get_highest(exam,s)"/> </strong></td>
-                                                                            <td ><strong> <span t-field="obtained.letter_grade"/> </strong></td>
-                                                                            <td ><strong> <span t-field="obtained.grade_point"/> </strong></td>
-                                                                            <td ><strong> <span t-esc="get_gpa(student,exam,'additional')"/> </strong></td>
-                                                                            <!--<td ><strong> <span t-field="s.mark_scored"/> </strong></td>-->
-                                                                            <!--<td ><strong> Highest </strong></td>-->
-                                                                            <!--<td ><strong><span t-field="s.letter_grade"/> </strong></td>-->
-                                                                            <!--<td ><strong> <span t-field="s.grade_point"/> </strong></td>-->
-                                                                            <!--<td ><strong> GPA </strong></td>-->
-                                                                    </tr>
-                                                                    <t t-if="s_last">
-                                                                        <tr>
-                                                                            <td colspan="2">Total</td>
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td><span t-esc="total_tut"/></td>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td><span t-esc="total_subj"/></td>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td><span t-esc="total_obj"/></td>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td><span t-esc="total_prac"/></td>
-                                                                            </t>
-                                                                            <td><span t-esc="total_total"/></td>
-
-
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td><span t-esc="obtained_total_tut"/></td>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td><span t-esc="obtained_total_subj"/></td>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td><span t-esc="obtained_total_obj"/></td>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td><span t-esc="obtained_total_prac"/></td>
-                                                                            </t>
-                                                                            <td><span t-esc="obtained_total_total"/></td>
-
-                                                                        </tr>
-
-                                                                    </t>
-                                                                </t>
-
-                                                        </table>
-                                                    </td>
-                                                    </t>
-                                                 </tr>
-                                            </t>
-<!--additional subject end-->
-<!--extra subject start-->
-                                             <t t-if="extra_subject != 0">
-                                                <tr>
-                                                    <t t-foreach="get_exams(docs)" t-as="exam">
-
-
-                                                    <t t-set="total_tut" t-value="0"/>
-                                                    <t t-set="total_obj" t-value="0"/>
-                                                    <t t-set="total_subj" t-value="0"/>
-                                                    <t t-set="total_prac" t-value="0"/>
-                                                    <t t-set="total_total" t-value="0"/>
-                                                    <t t-set="obtained_total_tut" t-value="0"/>
-                                                    <t t-set="obtained_total_obj" t-value="0"/>
-                                                    <t t-set="obtained_total_subj" t-value="0"/>
-                                                    <t t-set="obtained_total_prac" t-value="0"/>
-                                                    <t t-set="obtained_total_total" t-value="0"/>
+                                                    <!--<t t-set="total_tut" t-value="0"/>-->
+                                                    <!--<t t-set="total_obj" t-value="0"/>-->
+                                                    <!--<t t-set="total_subj" t-value="0"/>-->
+                                                    <!--<t t-set="total_prac" t-value="0"/>-->
+                                                    <!--<t t-set="total_total" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_tut" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_obj" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_subj" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_prac" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_total" t-value="0"/>-->
 
 
 
-                                                    <td>
-                                                        <table width="100%">
-                                                            <tr>
-                                                                <t t-if="exam_first"> <td rowspan="2">Subject</td>
-                                                                    <td rowspan="2">Paper</td>
-                                                                    <td t-att-colspan="mark_colum" >Full Mark</td>
-                                                                </t>
-                                                                <td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <t t-if="tut_mark==1">
-                                                                    <td>Tut</td>
-                                                                </t>
-                                                                <t t-if="subj_mark==1">
-                                                                    <td>Subj</td>
-                                                                </t>
-                                                                <t t-if="obj_mark==1">
-                                                                    <td>Obj</td>
-                                                                </t>
-                                                                <t t-if="prac_mark==1">
-                                                                    <td>Prac</td>
-                                                                </t>
-                                                                    <td>Total</td>
+                                                    <!--<td>-->
+                                                        <!--<table width="100%">-->
+                                                            <!--<tr>-->
+                                                                <!--<t t-if="exam_first"> <td rowspan="2">Subject</td>-->
+                                                                    <!--<td rowspan="2">Paper</td>-->
+                                                                    <!--<td t-att-colspan="mark_colum" >Full Mark</td>-->
+                                                                <!--</t>-->
+                                                                <!--<td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td>-->
+                                                            <!--</tr>-->
+                                                            <!--<tr>-->
+                                                                <!--<t t-if="tut_mark==1">-->
+                                                                    <!--<td>Tut</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="subj_mark==1">-->
+                                                                    <!--<td>Subj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="obj_mark==1">-->
+                                                                    <!--<td>Obj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="prac_mark==1">-->
+                                                                    <!--<td>Prac</td>-->
+                                                                <!--</t>-->
+                                                                    <!--<td>Total</td>-->
 
-                                                                <t t-if="tut_mark==1">
-                                                                    <td>Tut</td>
-                                                                </t>
-                                                                <t t-if="subj_mark==1">
-                                                                    <td>Subj</td>
-                                                                </t>
-                                                                <t t-if="obj_mark==1">
-                                                                    <td>Obj</td>
-                                                                </t>
-                                                                <t t-if="prac_mark==1">
-                                                                    <td>Prac</td>
-                                                                </t>
-                                                                <td>Total</td>
-                                                                <td>Highest</td>
-                                                                <td>LG</td>
-                                                                <td>GP</td>
-                                                                <td>GPA</td>
-                                                            </tr>
-                                                                <t t-foreach="get_subjects(exam,'extra')" t-as="s" >
-                                                                    <t t-set="obtained" t-value="get_marks(exam,s,student)"/>
-                                                                    <tr>
-                                                                        <t t-if="exam_first">
-                                                                                <td><span t-field="s.subject_id.display"/> </td>
-                                                                                <td><span t-field="s.subject_id.paper"/> </td>
-                                                                            </t>
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.tut_mark"/> </strong></td>
-                                                                                <t t-set="total_tut" t-value="total_tut +s.subject_id.tut_mark"/>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.subj_mark"/> </strong></td>
-                                                                                <t t-set="total_subj" t-value="total_subj +s.subject_id.subj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.obj_mark"/> </strong></td>
-                                                                                <t t-set="total_obj" t-value="total_obj +s.subject_id.obj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td ><strong> <span t-field="s.subject_id.prac_mark"/> </strong></td>
-                                                                                <t t-set="total_prac" t-value="total_prac +s.subject_id.prac_mark"/>
-                                                                            </t>
-                                                                            <td ><strong> <span t-field="s.subject_id.total_mark"/> </strong></td>
-                                                                            <t t-set="total_total" t-value="total_total +s.subject_id.total_mark"/>
-
-
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.tut_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_tut" t-value="obtained_total_tut +obtained.tut_mark"/>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.subj_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_subj" t-value="obtained_total_subj +obtained.subj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.obj_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_obj" t-value="obtained_total_obj +obtained.obj_mark"/>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td ><strong> <span t-field="obtained.prac_mark"/> </strong></td>
-                                                                                <t t-set="obtained_total_prac" t-value="obtained_total_prac +obtained.tut_prac"/>
-                                                                            </t>
-                                                                            <td ><strong> <span t-field="obtained.mark_scored"/> </strong></td>
-                                                                            <t t-set="obtained_total_total" t-value="obtained_total_total +obtained.mark_scored"/>
-                                                                            <td ><strong> <span t-esc="get_highest(exam,s)"/> </strong></td>
-                                                                            <td ><strong> <span t-field="obtained.letter_grade"/> </strong></td>
-                                                                            <td ><strong> <span t-field="obtained.grade_point"/> </strong></td>
-                                                                            <td ><strong> <span t-esc="get_gpa(student,exam,'extra')"/> </strong></td>
-                                                                            <!--<td ><strong> <span t-field="s.mark_scored"/> </strong></td>-->
-                                                                            <!--<td ><strong> Highest </strong></td>-->
-                                                                            <!--<td ><strong><span t-field="s.letter_grade"/> </strong></td>-->
-                                                                            <!--<td ><strong> <span t-field="s.grade_point"/> </strong></td>-->
-                                                                            <!--<td ><strong> GPA </strong></td>-->
-                                                                    </tr>
-                                                                    <t t-if="s_last">
-                                                                        <tr>
-                                                                            <td colspan="2">Total</td>
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td><span t-esc="total_tut"/></td>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td><span t-esc="total_subj"/></td>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td><span t-esc="total_obj"/></td>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td><span t-esc="total_prac"/></td>
-                                                                            </t>
-                                                                            <td><span t-esc="total_total"/></td>
+                                                                <!--<t t-if="tut_mark==1">-->
+                                                                    <!--<td>Tut</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="subj_mark==1">-->
+                                                                    <!--<td>Subj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="obj_mark==1">-->
+                                                                    <!--<td>Obj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="prac_mark==1">-->
+                                                                    <!--<td>Prac</td>-->
+                                                                <!--</t>-->
+                                                                <!--<td>Total</td>-->
+                                                                <!--<td>Highest</td>-->
+                                                                <!--<td>LG</td>-->
+                                                                <!--<td>GP</td>-->
+                                                                <!--<td>GPA</td>-->
+                                                            <!--</tr>-->
+                                                                <!--<t t-foreach="get_subjects(exam,'general')" t-as="s" >-->
+                                                                    <!--<t t-set="obtained" t-value="get_marks(exam,s,student)"/>-->
+                                                                    <!--<tr>-->
+                                                                        <!--<t t-if="exam_first">-->
+                                                                                <!--<td><span t-field="s.subject_id.display"/> </td>-->
+                                                                                <!--<td><span t-field="s.subject_id.paper"/> </td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.tut_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_tut" t-value="total_tut +s.subject_id.tut_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.subj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_subj" t-value="total_subj +s.subject_id.subj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.obj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_obj" t-value="total_obj +s.subject_id.obj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.prac_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_prac" t-value="total_prac +s.subject_id.prac_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td ><strong> <span t-field="s.subject_id.total_mark"/> </strong></td>-->
+                                                                            <!--<t t-set="total_total" t-value="total_total +s.subject_id.total_mark"/>-->
 
 
-                                                                            <t t-if="tut_mark==1">
-                                                                                <td><span t-esc="obtained_total_tut"/></td>
-                                                                            </t>
-                                                                            <t t-if="subj_mark==1">
-                                                                                <td><span t-esc="obtained_total_subj"/></td>
-                                                                            </t>
-                                                                            <t t-if="obj_mark==1">
-                                                                                <td><span t-esc="obtained_total_obj"/></td>
-                                                                            </t>
-                                                                            <t t-if="prac_mark==1">
-                                                                                <td><span t-esc="obtained_total_prac"/></td>
-                                                                            </t>
-                                                                            <td><span t-esc="obtained_total_total"/></td>
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.tut_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_tut" t-value="obtained_total_tut +obtained.tut_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.subj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_subj" t-value="obtained_total_subj +obtained.subj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.obj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_obj" t-value="obtained_total_obj +obtained.obj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.prac_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_prac" t-value="obtained_total_prac +obtained.tut_prac"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.mark_scored"/> </strong></td>-->
+                                                                            <!--<t t-set="obtained_total_total" t-value="obtained_total_total +obtained.mark_scored"/>-->
+                                                                            <!--<td ><strong> <span t-esc="get_highest(exam,s)"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.letter_grade"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.grade_point"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-esc="get_gpa(student,exam,'general')"/> </strong></td>-->
+                                                                            <!--&lt;!&ndash;<td ><strong> <span t-field="s.mark_scored"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> Highest </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong><span t-field="s.letter_grade"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> <span t-field="s.grade_point"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> GPA </strong></td>&ndash;&gt;-->
+                                                                    <!--</tr>-->
+                                                                    <!--<t t-if="s_last">-->
+                                                                        <!--<tr>-->
+                                                                            <!--<td colspan="2">Total</td>-->
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td><span t-esc="total_tut"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td><span t-esc="total_subj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td><span t-esc="total_obj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td><span t-esc="total_prac"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td><span t-esc="total_total"/></td>-->
 
-                                                                        </tr>
 
-                                                                    </t>
-                                                                </t>
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_tut"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_subj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_obj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_prac"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td><span t-esc="obtained_total_total"/></td>-->
 
-                                                        </table>
-                                                    </td>
-                                                </t>
+                                                                        <!--</tr>-->
 
-                                                </tr>
-                                             </t>
-   <!--Extra Subject ends                                          -->
-                                        </table>
-                                    </div>
-                                </div>
-                                <table width="100%" border-collapse="collapse">
-                                    <tr><td>Position In order of Class=</td><td>Date Of Return</td><td>Mark Obtained=</td></tr>
-                                    <tr><td>Position In order of section=</td><td></td><td></td></tr>
-                                    <tr ><td height="50px"></td><td></td><td></td></tr>
-                                    <tr border="0">
-                                        <td border="0">Signature Of Class Teacher</td>
-                                        <td border="0">Signature Of the Principal</td>
-                                        <td border="0">Signature Of Guardian</td>
-                                    </tr>
-                                </table>
+                                                                    <!--</t>-->
+                                                                <!--</t>-->
+
+                                                        <!--</table>-->
+                                                    <!--</td>-->
+                                                <!--</t>-->
+                                            <!--</tr>-->
+
+<!--&lt;!&ndash;additional subject start&ndash;&gt;-->
+                                            <!--<t t-if="additional_subject != 0">-->
+                                                 <!--<tr>-->
+                                                    <!--<t t-foreach="get_exams(docs)" t-as="exam">-->
+
+
+                                                        <!--<t t-set="total_tut" t-value="0"/>-->
+                                                    <!--<t t-set="total_obj" t-value="0"/>-->
+                                                    <!--<t t-set="total_subj" t-value="0"/>-->
+                                                    <!--<t t-set="total_prac" t-value="0"/>-->
+                                                    <!--<t t-set="total_total" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_tut" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_obj" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_subj" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_prac" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_total" t-value="0"/>-->
+
+
+                                                    <!--<td>-->
+                                                        <!--<table width="100%">-->
+                                                            <!--<tr>-->
+                                                                <!--<t t-if="exam_first"> <td rowspan="2">Subject</td>-->
+                                                                    <!--<td rowspan="2">Paper</td>-->
+                                                                    <!--<td t-att-colspan="mark_colum" >Full Mark</td>-->
+                                                                <!--</t>-->
+                                                                <!--<td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td>-->
+                                                            <!--</tr>-->
+                                                            <!--<tr>-->
+                                                                <!--<t t-if="tut_mark==1">-->
+                                                                    <!--<td>Tut</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="subj_mark==1">-->
+                                                                    <!--<td>Subj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="obj_mark==1">-->
+                                                                    <!--<td>Obj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="prac_mark==1">-->
+                                                                    <!--<td>Prac</td>-->
+                                                                <!--</t>-->
+                                                                    <!--<td>Total</td>-->
+
+                                                                <!--<t t-if="tut_mark==1">-->
+                                                                    <!--<td>Tut</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="subj_mark==1">-->
+                                                                    <!--<td>Subj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="obj_mark==1">-->
+                                                                    <!--<td>Obj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="prac_mark==1">-->
+                                                                    <!--<td>Prac</td>-->
+                                                                <!--</t>-->
+                                                                <!--<td>Total</td>-->
+                                                                <!--<td>Highest</td>-->
+                                                                <!--<td>LG</td>-->
+                                                                <!--<td>GP</td>-->
+                                                                <!--<td>GPA</td>-->
+                                                            <!--</tr>-->
+                                                                <!--<t t-foreach="get_subjects(exam,'additional')" t-as="s" >-->
+                                                                    <!--<t t-set="obtained" t-value="get_marks(exam,s,student)"/>-->
+                                                                    <!--<tr>-->
+                                                                        <!--<t t-if="exam_first">-->
+                                                                                <!--<td><span t-field="s.subject_id.display"/> </td>-->
+                                                                                <!--<td><span t-field="s.subject_id.paper"/> </td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.tut_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_tut" t-value="total_tut +s.subject_id.tut_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.subj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_subj" t-value="total_subj +s.subject_id.subj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.obj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_obj" t-value="total_obj +s.subject_id.obj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.prac_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_prac" t-value="total_prac +s.subject_id.prac_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td ><strong> <span t-field="s.subject_id.total_mark"/> </strong></td>-->
+                                                                            <!--<t t-set="total_total" t-value="total_total +s.subject_id.total_mark"/>-->
+
+
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.tut_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_tut" t-value="obtained_total_tut +obtained.tut_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.subj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_subj" t-value="obtained_total_subj +obtained.subj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.obj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_obj" t-value="obtained_total_obj +obtained.obj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.prac_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_prac" t-value="obtained_total_prac +obtained.tut_prac"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.mark_scored"/> </strong></td>-->
+                                                                            <!--<t t-set="obtained_total_total" t-value="obtained_total_total +obtained.mark_scored"/>-->
+                                                                            <!--<td ><strong> <span t-esc="get_highest(exam,s)"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.letter_grade"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.grade_point"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-esc="get_gpa(student,exam,'additional')"/> </strong></td>-->
+                                                                            <!--&lt;!&ndash;<td ><strong> <span t-field="s.mark_scored"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> Highest </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong><span t-field="s.letter_grade"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> <span t-field="s.grade_point"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> GPA </strong></td>&ndash;&gt;-->
+                                                                    <!--</tr>-->
+                                                                    <!--<t t-if="s_last">-->
+                                                                        <!--<tr>-->
+                                                                            <!--<td colspan="2">Total</td>-->
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td><span t-esc="total_tut"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td><span t-esc="total_subj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td><span t-esc="total_obj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td><span t-esc="total_prac"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td><span t-esc="total_total"/></td>-->
+
+
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_tut"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_subj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_obj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_prac"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td><span t-esc="obtained_total_total"/></td>-->
+
+                                                                        <!--</tr>-->
+
+                                                                    <!--</t>-->
+                                                                <!--</t>-->
+
+                                                        <!--</table>-->
+                                                    <!--</td>-->
+                                                    <!--</t>-->
+                                                 <!--</tr>-->
+                                            <!--</t>-->
+<!--&lt;!&ndash;additional subject end&ndash;&gt;-->
+<!--&lt;!&ndash;extra subject start&ndash;&gt;-->
+                                             <!--<t t-if="extra_subject != 0">-->
+                                                <!--<tr>-->
+                                                    <!--<t t-foreach="get_exams(docs)" t-as="exam">-->
+
+
+                                                    <!--<t t-set="total_tut" t-value="0"/>-->
+                                                    <!--<t t-set="total_obj" t-value="0"/>-->
+                                                    <!--<t t-set="total_subj" t-value="0"/>-->
+                                                    <!--<t t-set="total_prac" t-value="0"/>-->
+                                                    <!--<t t-set="total_total" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_tut" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_obj" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_subj" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_prac" t-value="0"/>-->
+                                                    <!--<t t-set="obtained_total_total" t-value="0"/>-->
+
+
+
+                                                    <!--<td>-->
+                                                        <!--<table width="100%">-->
+                                                            <!--<tr>-->
+                                                                <!--<t t-if="exam_first"> <td rowspan="2">Subject</td>-->
+                                                                    <!--<td rowspan="2">Paper</td>-->
+                                                                    <!--<td t-att-colspan="mark_colum" >Full Mark</td>-->
+                                                                <!--</t>-->
+                                                                <!--<td colspan="9"> <strong> <span t-field="exam.exam_type"/> </strong></td>-->
+                                                            <!--</tr>-->
+                                                            <!--<tr>-->
+                                                                <!--<t t-if="tut_mark==1">-->
+                                                                    <!--<td>Tut</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="subj_mark==1">-->
+                                                                    <!--<td>Subj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="obj_mark==1">-->
+                                                                    <!--<td>Obj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="prac_mark==1">-->
+                                                                    <!--<td>Prac</td>-->
+                                                                <!--</t>-->
+                                                                    <!--<td>Total</td>-->
+
+                                                                <!--<t t-if="tut_mark==1">-->
+                                                                    <!--<td>Tut</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="subj_mark==1">-->
+                                                                    <!--<td>Subj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="obj_mark==1">-->
+                                                                    <!--<td>Obj</td>-->
+                                                                <!--</t>-->
+                                                                <!--<t t-if="prac_mark==1">-->
+                                                                    <!--<td>Prac</td>-->
+                                                                <!--</t>-->
+                                                                <!--<td>Total</td>-->
+                                                                <!--<td>Highest</td>-->
+                                                                <!--<td>LG</td>-->
+                                                                <!--<td>GP</td>-->
+                                                                <!--<td>GPA</td>-->
+                                                            <!--</tr>-->
+                                                                <!--<t t-foreach="get_subjects(exam,'extra')" t-as="s" >-->
+                                                                    <!--<t t-set="obtained" t-value="get_marks(exam,s,student)"/>-->
+                                                                    <!--<tr>-->
+                                                                        <!--<t t-if="exam_first">-->
+                                                                                <!--<td><span t-field="s.subject_id.display"/> </td>-->
+                                                                                <!--<td><span t-field="s.subject_id.paper"/> </td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.tut_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_tut" t-value="total_tut +s.subject_id.tut_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.subj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_subj" t-value="total_subj +s.subject_id.subj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.obj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_obj" t-value="total_obj +s.subject_id.obj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="s.subject_id.prac_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="total_prac" t-value="total_prac +s.subject_id.prac_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td ><strong> <span t-field="s.subject_id.total_mark"/> </strong></td>-->
+                                                                            <!--<t t-set="total_total" t-value="total_total +s.subject_id.total_mark"/>-->
+
+
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.tut_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_tut" t-value="obtained_total_tut +obtained.tut_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.subj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_subj" t-value="obtained_total_subj +obtained.subj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.obj_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_obj" t-value="obtained_total_obj +obtained.obj_mark"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td ><strong> <span t-field="obtained.prac_mark"/> </strong></td>-->
+                                                                                <!--<t t-set="obtained_total_prac" t-value="obtained_total_prac +obtained.tut_prac"/>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.mark_scored"/> </strong></td>-->
+                                                                            <!--<t t-set="obtained_total_total" t-value="obtained_total_total +obtained.mark_scored"/>-->
+                                                                            <!--<td ><strong> <span t-esc="get_highest(exam,s)"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.letter_grade"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-field="obtained.grade_point"/> </strong></td>-->
+                                                                            <!--<td ><strong> <span t-esc="get_gpa(student,exam,'extra')"/> </strong></td>-->
+                                                                            <!--&lt;!&ndash;<td ><strong> <span t-field="s.mark_scored"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> Highest </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong><span t-field="s.letter_grade"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> <span t-field="s.grade_point"/> </strong></td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td ><strong> GPA </strong></td>&ndash;&gt;-->
+                                                                    <!--</tr>-->
+                                                                    <!--<t t-if="s_last">-->
+                                                                        <!--<tr>-->
+                                                                            <!--<td colspan="2">Total</td>-->
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td><span t-esc="total_tut"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td><span t-esc="total_subj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td><span t-esc="total_obj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td><span t-esc="total_prac"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td><span t-esc="total_total"/></td>-->
+
+
+                                                                            <!--<t t-if="tut_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_tut"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="subj_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_subj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="obj_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_obj"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<t t-if="prac_mark==1">-->
+                                                                                <!--<td><span t-esc="obtained_total_prac"/></td>-->
+                                                                            <!--</t>-->
+                                                                            <!--<td><span t-esc="obtained_total_total"/></td>-->
+
+                                                                        <!--</tr>-->
+
+                                                                    <!--</t>-->
+                                                                <!--</t>-->
+
+                                                        <!--</table>-->
+                                                    <!--</td>-->
+                                                <!--</t>-->
+
+                                                <!--</tr>-->
+                                             <!--</t>-->
+   <!--&lt;!&ndash;Extra Subject ends                                          &ndash;&gt;-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<table width="100%" border-collapse="collapse">-->
+                                    <!--<tr><td>Position In order of Class=</td><td>Date Of Return</td><td>Mark Obtained=</td></tr>-->
+                                    <!--<tr><td>Position In order of section=</td><td></td><td></td></tr>-->
+                                    <!--<tr ><td height="50px"></td><td></td><td></td></tr>-->
+                                    <!--<tr border="0">-->
+                                        <!--<td border="0">Signature Of Class Teacher</td>-->
+                                        <!--<td border="0">Signature Of the Principal</td>-->
+                                        <!--<td border="0">Signature Of Guardian</td>-->
+                                    <!--</tr>-->
+                                <!--</table>-->
                             </div>
                         </div>
                     </t>
