@@ -182,9 +182,9 @@ class acdemicTranscripts(models.AbstractModel):
                 for line in mark_line:
                     if line.mark_scored:
                         total=total+line.mark_scored
-                section.append(student.section)
-                stu.append(student)
-                exa.append(exam)
+                section.append(student.section.id)
+                stu.append(student.id)
+                exa.append(exam.id)
                 scor.append(total)
                 merit_class.append(0)
                 merit_section.append(0)
