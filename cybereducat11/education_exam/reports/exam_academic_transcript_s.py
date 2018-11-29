@@ -173,26 +173,48 @@ class acdemicTranscripts(models.AbstractModel):
             scor=[]
             merit_class=[]
             merit_section=[]
+            fail_in_extra=[]
             if index==1:
                 student_list = self.env['education.class.history'].search([('level.id', '=', object.level.id)])
             for student in student_list:
-                total=0
+                obtained_total=0
+                optional_obtained=0
+                extra_obtained=0
+                optional_count=0
+                optional_total=0
+                fail_extra=1
                 mark_line = self.env['results.subject.line'].search(
                     [('student_id', '=', student.student_id.id), ('exam_id', '=', exam.id)])
                 for line in mark_line:
-                    if line.mark_scored:
-                        total=total+line.mark_scored
+                    # filter the subject is not optional for the student
+                    if line.subject_id  not in student.optional_subjects:
+                        if line.subject_id.evaluation_type != 'extra':
+                            if line.mark_scored:
+                                obtained_total=obtained_total+line.mark_scored
+                        elif line.mark_scored:
+                            extra_obtained=extra_obtained+line.mark_scored
+                            if line.letter_grade=='F':
+                                fail_extra=0
+
+                    elif line.mark_scored:
+                        optional_count=optional_count+1
+                        optional_total=optional_total+line.subject_id.total_mark
+                        optional_obtained=optional_obtained+line.mark_scored
+                additional_mark=optional_obtained-(optional_total*0.4)
+                if additional_mark>0:
+                    obtained_total=obtained_total+additional_mark
                 section.append(student.section.id)
                 stu.append(student.id)
                 exa.append(exam.id)
-                scor.append(total)
+                scor.append(obtained_total)
                 merit_class.append(0)
                 merit_section.append(0)
+                fail_in_extra.append(fail_extra)
             if index==1:
                 data={'student':stu,'section':section,"exam"+ str(index) :exa,
                       'Score'+ str(index) :scor,'merit_class'+ str(index) :merit_class,'merit_section'+ str(index) :merit_section,
                       'Score': scor, 'merit_class': merit_class,
-                      'merit_section' : merit_section}
+                      'merit_section' : merit_section,'fail_in_extra':fail_in_extra}
                 df= pd.DataFrame(data)
             else:
                 df.insert(3, 'exam'+str(index), exa, allow_duplicates=False)
@@ -211,14 +233,14 @@ class acdemicTranscripts(models.AbstractModel):
             section_list=df.section.unique()
             for rec in section_list:
                 df1 = df[(df['section'] ==rec )]
-                result = df1.sort_values(by=['Score'+str (index) ], ascending=False)
+                result = df1.sort_values(by=['Score'+str (index) ,'fail_in_extra'], ascending=[False,False])
                 result = result.reset_index(drop=True)
                 for i in range(0, len(result)):
                     df.loc[df['student'] == result.at[i, 'student'], 'merit_section'+str (index) ] = i + 1
                     # result.at[i, 'merit_section'] = i + 1
                     i = i + 1
             index = index + 1
-        result = df.sort_values(by=['Score'], ascending=False)
+        result = df.sort_values(by=['Score','fail_in_extra'], ascending=[False,False])
         result = result.reset_index(drop=True)
         for i in range(0, len(result)):
             df.loc[df['student'] == result.at[i, 'student'], 'merit_class'] = i + 1

@@ -19,7 +19,7 @@
                                     }
                             .right_top{
                             float:right;
-                            padding-top:70px;
+                            padding-top:20px;
                             }
                             .left_top{
                             float:left;
@@ -118,6 +118,7 @@
                         <div class="page">
                             <div class="oe_structure">
                                   <div class="row">
+                                       <div class="header text-center">Academic Transcript</div>
                                     <div class="right_top" >
                                         <table>
                                             <tr><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
@@ -339,7 +340,8 @@
                                                         <t t-else="">
                                                            <td t-att-colspan="mark_type_count ">
                                                                <t t-if="exam_total!=0">
-                                                                   <t t-esc="round(exam_obtained_total/exam_total*100,2)"/>%</t>
+                                                                   <t t-esc="round(exam_obtained_total/exam_total*100,2)"/> %
+                                                        </t>
                                                                <t t-else="">0%</t>
                                                            </td>
                                                            <td><t t-esc="get_exam_obtained_total(exam,student,'non_optional','general')"/> </td>
@@ -568,20 +570,37 @@
 
                                 <div class="row">
 
-                                   <div class="left_top">Position in order to Section:
+                                   <div class = 'col-xs-4'>Position in order to Section:
                                        <t  t-set="sl" t-value="merit_list[(merit_list['student'] ==student.id )]"/>
-                                       <t t-esc="sl.at[0,'merit_section']"/>
+                                       <t t-if="len(sl)>0">
+                                            <t t-esc="sl.at[0,'merit_section']"/>
+                                       </t>
                                        </div>
 
-                                   <div class="left_top">Date Of Return</div>
+                                   <div class = 'col-xs-4'>Date Of Return</div>
+                                    <div class = 'col-xs-4'>Mark Obtained:  <t t-if="exam_total!=0">
+                                                                                <t t-esc="round(exam_obtained_total/exam_total*100,2)"/> %
+                                                                            </t>
+                                                                            <t t-else="">0%</t></div>
                                 </div>
                                 <div class="row">
-                                   <div class="left_top">Position in order to Class :<t t-esc="sl.at[0,'merit_class']"/></div>
+                                   <div class = 'col-xs-4'>Position in order to Class :
+                                       <t t-if="len(sl)>0">
+                                           <t t-esc="sl.at[0,'merit_class']"/>
+                                       </t>
+                                   </div>
                                 </div>
-                                <div class="row" width="100%">
-                                   <div class="left_top" width="33%">Signature of Class Teacher</div>
-                                   <div class="left_top">Signature of The Principal</div>
-                                   <div class="left_top">Signature of The Guardian</div>
+                                <div class="row">
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                </div>
+
+
+                                <div class="row">
+                                       <div class = 'col-xs-4'>Signature of Class Teacher</div>
+                                       <div class = 'col-xs-4'>Signature of The Principal</div>
+                                       <div class = 'col-xs-4'>Signature of The Guardian</div>
                                 </div>
                             </div>
                         </div>

@@ -13,7 +13,7 @@
                         <field name="exams" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'invisible':[('level','=',False)]}" domain="[('class_id','=',level),('academic_year','=',academic_year)]"/>
                         <field name="section" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{ 'invisible':[('level','=',False)]}"  domain="[('class_id','=',level),('academic_year_id','=',academic_year)]"/>
                         <field name="specific_student" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
-                        <field name="student" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'invisible': [('specific_student','=',False)]}"/>
+                        <field name="student" options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'invisible': [('specific_student','=',False)]}"  domain="[('class_id','=',section)]"/>
 
                     </group>
 
