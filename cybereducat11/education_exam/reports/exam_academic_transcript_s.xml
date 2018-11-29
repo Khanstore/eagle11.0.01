@@ -571,10 +571,9 @@
                                 <div class="row">
 
                                    <div class = 'col-xs-4'>Position in order to Section:
-                                       <t  t-set="sl" t-value="merit_list[(merit_list['student'] ==student.id )]"/>
-                                       <t t-if="len(sl)>0">
-                                            <t t-esc="sl.at[0,'merit_section']"/>
-                                       </t>
+                                       <t  t-set="sl" t-value="merit_list[(merit_list['student'] ==student.student_id.id )]"/>
+                                       <!--<t t-esc="sl"/>-->
+                                            <t t-esc="num2serial(int(sl.iloc[0]['merit_section']))"/>
                                        </div>
 
                                    <div class = 'col-xs-4'>Date Of Return</div>
@@ -585,9 +584,7 @@
                                 </div>
                                 <div class="row">
                                    <div class = 'col-xs-4'>Position in order to Class :
-                                       <t t-if="len(sl)>0">
-                                           <t t-esc="sl.at[0,'merit_class']"/>
-                                       </t>
+                                           <t t-esc="num2serial(int(sl.iloc[0]['merit_class']))"/>
                                    </div>
                                 </div>
                                 <div class="row">

@@ -204,7 +204,7 @@ class acdemicTranscripts(models.AbstractModel):
                 if additional_mark>0:
                     obtained_total=obtained_total+additional_mark
                 section.append(student.section.id)
-                stu.append(student.id)
+                stu.append(student.student_id.id)
                 exa.append(exam.id)
                 scor.append(obtained_total)
                 merit_class.append(0)
@@ -260,6 +260,34 @@ class acdemicTranscripts(models.AbstractModel):
 
         return df
 
+    def num2serial(self,numb):
+        if numb < 20:  # determining suffix for < 20
+            if numb == 1:
+                suffix = 'st'
+            elif numb == 2:
+                suffix = 'nd'
+            elif numb == 3:
+                suffix = 'rd'
+            else:
+                suffix = 'th'
+        else:  # determining suffix for > 20
+            tens = str(numb)
+            tens = tens[-2]
+            unit = str(numb)
+            unit = unit[-1]
+            if tens == "1":
+                suffix = "th"
+            else:
+                if unit == "1":
+                    suffix = 'st'
+                elif unit == "2":
+                    suffix = 'nd'
+                elif unit == "3":
+                    suffix = 'rd'
+                else:
+                    suffix = 'th'
+        return str(numb) + suffix
+
     def get_row_count(self,student_history,exam):
         student = student_history.student_id
         count=0
@@ -293,4 +321,5 @@ class acdemicTranscripts(models.AbstractModel):
             'get_exam_total': self.get_exam_total,
             'get_exam_obtained_total': self.get_exam_obtained_total,
             'count_subjects': self.count_subjects,
+            'num2serial': self.num2serial,
         }
