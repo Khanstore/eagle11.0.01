@@ -4,11 +4,12 @@
 
         <template id="report_exam_academic_transcript_s">
             <t t-call="web.html_container">
+                <t t-call="web.external_layout">
                 <t t-set="merit_list" t-value="get_merit_list(docs)"/>
                 <t t-foreach="get_students(docs)" t-as="student">
 
 
-                    <t t-call="web.external_layout">
+
                         <style>
                             table, th, td {
                                      border: 1px solid black;
@@ -44,7 +45,9 @@
 
 
                             }
-
+                            .dont_split{
+                               page-break-inside: avoid;
+                                }
 
 
 
@@ -115,11 +118,15 @@
 
 <!--   ######    Variables for the report    -->
 
-                        <div class="page">
+                        <div class="page" page-breake-inside="avoid">
                             <div class="oe_structure">
-                                  <div class="row">
-                                       <div class="header text-center">Academic Transcript</div>
-                                    <div class="right_top" >
+                                <div class="dont_split">
+                                  <div class="row" width="100%" >
+                                <div class="col-xs-4"></div>
+                                      <div class="col-xs-4"><div ><h2><br></br>Academic Transcript</h2></div></div>
+
+
+                                    <div class="right_top">
                                         <table>
                                             <tr><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
 
@@ -132,6 +139,7 @@
 
                                         </table>
                                     </div>
+                                      <div class="right_top" width="50px"></div>
 
                                 </div>
                                 <div class="row">
@@ -415,10 +423,10 @@
                                                           <td><span t-field="mark.letter_grade"/></td>
                                                           <td><span t-field="mark.grade_point"/></td>
                                                            <t t-if="subject_first"><td t-att-rowspan="subject_count">
-                                                               <span t-esc="get_gpa(student,exam,'non_optional','extra')"/></td>
+                                                               </td>
                                                                <t t-if="fourth_subject>0">
-                                                                   <td t-att-rowspan="subject_count">
-                                                                       <t t-esc="get_gpa(student,exam,'non_optional','extra')+(get_gpa(student,exam,'optional','extra')-2)/subject_count"/>
+                                                                   <td t-att-rowspan="optional_count">
+                                                                       <t t-esc="get_gpa(student,exam,'optional','extra')"/>
                                                                    </td>
                                                                </t>
                                                            </t>
@@ -456,13 +464,12 @@
                                                                <p>percentage of total mark with additional subjects</p>
                                                            </td>
                                                            <td>
-                                                                <t t-esc="get_exam_obtained_total(exam,student,'non_optional','general')+(get_exam_obtained_total(exam,student,'optional','general')*60/100)"/>
                                                            </td>
                                                            <td t-att-colspan="4+fourth_subject"></td>
                                                        </t>
                                                         <t t-else="">
                                                            <td t-att-colspan="mark_type_count "></td>
-                                                           <td><t t-esc="get_exam_obtained_total(exam,student,'non_optional','general')+(get_exam_obtained_total(exam,student,'optional','general')*60/100)"/> </td>
+                                                           <td> </td>
                                                            <td t-att-colspan="4+fourth_subject"></td>
                                                         </t>
 
@@ -533,8 +540,8 @@
                                                            <t t-if="subject_first"><td t-att-rowspan="subject_count">
                                                                <span t-esc="get_gpa(student,exam,'non_optional','extra')"/></td>
                                                                <t t-if="fourth_subject>0">
-                                                                   <td t-att-rowspan="subject_count">
-                                                                       <t t-esc="get_gpa(student,exam,'non_optional','extra')+(get_gpa(student,exam,'optional','extra')-2)/subject_count"/>
+                                                                   <td t-att-rowspan="extra_count">
+                                                                       <!--<t t-esc="get_gpa(student,exam,'non_optional','extra')+(get_gpa(student,exam,'optional','extra')-2)/subject_count"/>-->
                                                                    </td>
                                                                </t>
                                                            </t>
@@ -599,6 +606,7 @@
                                        <div class = 'col-xs-4'>Signature of The Principal</div>
                                        <div class = 'col-xs-4'>Signature of The Guardian</div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </t>
