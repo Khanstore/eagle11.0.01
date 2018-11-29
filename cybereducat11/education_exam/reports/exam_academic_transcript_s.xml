@@ -567,7 +567,7 @@
 
 
                                 <div class="row">
-                                   <div class="left_top">Position in order to Section: <t t-esc="merit_list.loc[df.iata == 'PDX','name']" </div>
+                                   <div class="left_top">Position in order to Section: </div>
                                    <div class="left_top">Date Of Return</div>
                                 </div>
                                 <div class="row">
