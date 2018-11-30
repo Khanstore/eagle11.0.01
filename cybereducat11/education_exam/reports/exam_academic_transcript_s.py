@@ -4,6 +4,7 @@ from datetime import datetime
 import time
 from odoo import fields, models,api
 import pandas as pd
+import numpy
 
 
 class acdemicTranscripts(models.AbstractModel):
@@ -166,23 +167,24 @@ class acdemicTranscripts(models.AbstractModel):
         section=[]
         merit_class=[]
         merit_section=[]
-        index=1
-        student_list=[]
+        exam_list=[]
+        exam_sl=1
+        student_list = self.env['education.class.history'].search([('level.id', '=', object.level.id)])
         for exam in object.exams:
+            exam_list.append(exam.id)
             exa=[]
             scor=[]
             merit_class=[]
             merit_section=[]
             fail_in_extra=[]
-            if index==1:
-                student_list = self.env['education.class.history'].search([('level.id', '=', object.level.id)])
+
             for student in student_list:
                 obtained_total=0
                 optional_obtained=0
                 extra_obtained=0
                 optional_count=0
                 optional_total=0
-                fail_extra=1
+                fail_extra=0
                 mark_line = self.env['results.subject.line'].search(
                     [('student_id', '=', student.student_id.id), ('exam_id', '=', exam.id)])
                 for line in mark_line:
@@ -194,13 +196,13 @@ class acdemicTranscripts(models.AbstractModel):
                         elif line.mark_scored:
                             extra_obtained=extra_obtained+line.mark_scored
                             if line.letter_grade=='F':
-                                fail_extra=0
+                                fail_extra=1
 
-                    elif line.mark_scored:
+                    elif line.mark_scored:  #calculate optiional Marks
                         optional_count=optional_count+1
                         optional_total=optional_total+line.subject_id.total_mark
                         optional_obtained=optional_obtained+line.mark_scored
-                additional_mark=optional_obtained-(optional_total*0.4)
+                additional_mark=optional_obtained-(optional_total*0.4)  # calculate optional mark over 40%
                 if additional_mark>0:
                     obtained_total=obtained_total+additional_mark
                 section.append(student.section.id)
@@ -210,54 +212,62 @@ class acdemicTranscripts(models.AbstractModel):
                 merit_class.append(0)
                 merit_section.append(0)
                 fail_in_extra.append(fail_extra)
-            if index==1:
-                data={'student':stu,'section':section,"exam"+ str(index) :exa,
-                      'Score'+ str(index) :scor,'merit_class'+ str(index) :merit_class,'merit_section'+ str(index) :merit_section,
-                      'Score': scor, 'merit_class': merit_class,
-                      'merit_section' : merit_section,'fail_in_extra':fail_in_extra}
-                df= pd.DataFrame(data)
+            if exam_sl==1:
+                data={'student':stu,'section':section,"exam"+ str(exam.id) :exa,
+                      'score'+ str(exam.id) :scor,'merit_class'+ str(exam.id) :merit_class,'merit_section'+ str(exam.id) :merit_section,
+                      'score': merit_class, 'merit_class': merit_class,
+                      'merit_section' : merit_section,'fail_in_extra'+ str(exam.id) :merit_class,'fail_in_extra':merit_class}
+                df= pd.DataFrame(data)     #here score value =0 , as merit_class value is 0 , it is used as scoew
             else:
-                df.insert(3, 'exam'+str(index), exa, allow_duplicates=False)
-                df.insert(4, 'Score'+str(index), scor, allow_duplicates=False)
-                df.insert(4, 'merit_class'+str(index), merit_class, allow_duplicates=False)
-                df.insert(4, 'merit_section'+str(index), merit_section, allow_duplicates=False)
-
-            result = df.sort_values(by=['Score'+str( index) ], ascending=False)
-            result=result.reset_index(drop=True)
-            for i in range(0,len(result)):
-                df.loc[df[ 'student' ] == result.at[i,'student'], 'merit_class'+ str(index) ] = i+1
-                if index>1:
-                    df.loc[df[ 'student' ] == result.at[i,'student'], 'Score' ] = result.at[i,'Score']+result.at[i,'Score'+str(index)]
-                # result.at[i,'merit_class']=i+1
-                i=i+1
-            section_list=df.section.unique()
-            for rec in section_list:
-                df1 = df[(df['section'] ==rec )]
-                result = df1.sort_values(by=['Score'+str (index) ,'fail_in_extra'], ascending=[False,False])
-                result = result.reset_index(drop=True)
-                for i in range(0, len(result)):
-                    df.loc[df['student'] == result.at[i, 'student'], 'merit_section'+str (index) ] = i + 1
-                    # result.at[i, 'merit_section'] = i + 1
-                    i = i + 1
-            index = index + 1
-        result = df.sort_values(by=['Score','fail_in_extra'], ascending=[False,False])
-        result = result.reset_index(drop=True)
-        for i in range(0, len(result)):
-            df.loc[df['student'] == result.at[i, 'student'], 'merit_class'] = i + 1
-
-            # result.at[i,'merit_class']=i+1
-            i = i + 1
+                df.insert(3, 'exam'+str(exam.id), exa, allow_duplicates=False)
+                df.insert(4, 'score'+str(exam.id), scor, allow_duplicates=False)
+                df.insert(4, 'merit_class'+str(exam.id), merit_class, allow_duplicates=False)
+                df.insert(4, 'merit_section'+str(exam.id), merit_section, allow_duplicates=False)
+                df.insert(4, 'fail_in_extra'+str(exam.id), fail_in_extra, allow_duplicates=False)
+        if len(exam_list)>0: #if more than one exam 0 will represent the combined result
+            exam_list.append(0)
         section_list = df.section.unique()
-        for rec in section_list:
-            df1 = df[(df['section'] == rec)]
-            result = df1.sort_values(by=['Score'], ascending=False)
-            result = result.reset_index(drop=True)
-            for i in range(0, len(result)):
-                df.loc[df['student'] == result.at[i, 'student'], 'merit_section'] = i + 1
-                # result.at[i, 'merit_section'] = i + 1
-                i = i + 1
+        sections=[]
+        for section in section_list:
+            sections.append(section)
+        sections.append(0)
 
+        # if len(section_list)>0: # if there are more than one section, 0 represent the Class
+        #     numpy.append(section_list, 0)
 
+        # calculate merit list
+        exam_name=''
+        for  exam in exam_list:
+            if exam!=0:
+                exam_name=str(exam)
+            else:exam_name=''
+
+            for section in sections:
+                if section ==0:
+                    df1=df
+                    merit='merit_class'
+                else:
+                    merit = 'merit_section'
+                    df1 = df[(df['section'] == section)]
+                result = df1.sort_values(by=['score' + exam_name], ascending=False)
+                in_place = 0
+                out_place = 10
+                for index,row in result.iterrows():
+                    if in_place < 10:
+                        if row['fail_in_extra'+exam_name] == 0:  # check if the student not failed in extra subject
+                            in_place = in_place + 1
+                            place=in_place
+                        else:  # as failed in extra should be placed after 10
+                            out_place = out_place + 1
+                            place=out_place
+                    else:  # after place 10 extra fail check not necesary
+                        out_place = out_place + 1
+                        place = out_place
+                    df.loc[df['student'] == row[ 'student'], merit + exam_name] = place
+                    if exam != 0:
+                        df.loc[df['student'] == row[ 'student'], 'score'] = row[ 'score']+row[ 'score'+exam_name]
+                        if  row['fail_in_extra'+exam_name]!=0:
+                            df.loc[df['student'] == row['student'], 'fail_in_extra']=1
         return df
 
     def num2serial(self,numb):

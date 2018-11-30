@@ -10,7 +10,7 @@
                      <t t-call="web.external_layout">
                         <t t-set="exam_list" t-value="get_exams(docs)" />
                          <t t-set="exam_count" t-value="0"/>
-                         <t t-set="exam_no" t-value="1"/>
+
                          <t t-foreach="exam_list" t-as="exam">
                              <t t-set="exam_count" t-value="exam_count+1"/>
                          </t>
@@ -74,16 +74,15 @@
                                                 <!--<td><t t-esc="result.at[i,'exam'].name"/></td>-->
                                                 <td><t t-esc="result.at[i,'student'].student_id.name"/></td>
                                                 <!--<td><t t-esc="result.at[i,'section']"/></td>-->
-                                                <t t-set="exam_no" t-value="1"/>
+                                                <t t-set="exam_no" t-value="exam"/>
                                                 <t t-foreach="exam_list" t-as="exam">
-
-                                                    <td><t t-esc="result.at[i,'Score'+str(exam_no)]"/></td>
+                                                    <t t-set="exam_no" t-value="exam.id"/>
+                                                    <td><t t-esc="result.at[i,'score'+str(exam_no)]"/></td>
                                                     <td><t t-esc="result.at[i,'merit_class' +str(exam_no)]"/></td>
                                                     <td><t t-esc="result.at[i,'merit_section'+str(exam_no)]"/></td>
-                                                    <t t-set="exam_no" t-value="exam_no+1"/>
                                                     <t t-if="exam_last">
                                                         <t t-if="exam_count>1">
-                                                            <td><t t-esc="result.at[i,'Score']"/></td>
+                                                            <td><t t-esc="result.at[i,'score']"/></td>
                                                             <td><t t-esc="result.at[i,'merit_class']"/></td>
                                                             <td><t t-esc="result.at[i,'merit_section']"/></td>
                                                         </t>
