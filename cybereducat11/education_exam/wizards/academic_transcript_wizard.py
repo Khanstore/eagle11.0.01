@@ -10,6 +10,7 @@ class academicTranscript(models.Model):
     academic_year=fields.Many2one('education.academic.year',"Academic Year")
     level=fields.Many2one('education.class',"Level")
     exams=fields.Many2many('education.exam','transcript_id')
+    specific_section = fields.Boolean('For a specific section')
     section=fields.Many2one('education.class.division')
     specific_student=fields.Boolean('For a specific Student')
     student=fields.Many2one('education.student','Student')
@@ -25,13 +26,10 @@ class academicTranscript(models.Model):
                 domain.append(('class_id.class_id.id', '=', rec.level.id))
 
         return {'domain': {'student':domain}}
-
-    # def domain4subject(self):
-    #     domain = []
-    #     for rec in self:
-    #         if rec.division_id.id:
-    #             result_created = self.env['education.exam.valuation'].search(
-    #                 [('exam_id.id', '=', rec.exam_id.id), ('division_id.id', '=', rec.division_id.id)])
-    #             for res in result_created:
-    #                 domain.append(res.subject_id.id)
-    #     return {'domain': {'subject_id': [('id', '!=', domain)]}}
+    @api.multi
+    @api.onchange('specific_section')
+    def onchange_specific_section(self):
+        for rec in self:
+            if rec.specific_section==False:
+                rec.specific_student=False
+                rec.section=False
