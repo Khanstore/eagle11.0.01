@@ -49,7 +49,7 @@
                             <div class="oe_structure">
                             <div class="row">
                                 <table width="100%">
-                                    <t t-set='result' t-value="get_merit_list(docs)" />
+                                    <t t-set="result" t-value="get_merit_list(docs)" />
                                         <tr><td rowspan="2">Roll</td><td rowspan="2">ID</td><td rowspan="2">Name</td>
                                             <t t-if="exam_count>1" >
                                                 <t t-foreach="exam_list" t-as="exam">
