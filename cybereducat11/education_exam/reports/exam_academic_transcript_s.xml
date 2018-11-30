@@ -20,12 +20,11 @@
                                     }
                             .right_top{
                             float:right;
-                            padding-top:20px;
+                            padding-top:5px;
                             }
                             .left_top{
                             float:left;
-                            padding-top:50px;
-                            padding-left:50px;
+                            padding-top:10px;
                             }
                             .right{
                             float:right;
@@ -142,8 +141,8 @@
                                       <div class="right_top" width="50px"></div>
 
                                 </div>
-                                <div class="row">
-                                    <div class="right" padding-top="10px">
+                                <div class="row" width="100%">
+                                    <div class="right_top" padding-top="5px">
                                         <table>
                                             <tr><td colspan="2">Information</td><td colspan="2">Co-curricular Activity </td></tr>
                                             <tr><td> Number of Students:</td><td width="40px"><t t-esc="len(merit_list.index)"/> </td><td> Behavior</td><td width="40px"></td></tr>
@@ -152,7 +151,7 @@
                                             <tr><td> Percentage of attendance:</td><td></td><td> Cultural Activities:</td><td></td></tr>
                                         </table>
                                     </div>
-                                    <div class="left" padding-top="10px">
+                                    <div class="left_top">
                                         <table>
                                             <tr><td>ID: </td><td><span t-field="student.student_id.student_id"/></td>
                                                 <td>Roll: </td><td><span t-field="student.student_id.roll_no"/></td>
