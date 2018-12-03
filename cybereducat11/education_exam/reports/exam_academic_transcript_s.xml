@@ -190,126 +190,125 @@
                                               <th t-att-colspan="mark_type_count+fourth_subject+5">
                                                 <t t-esc="exam.name"/>
                                               </th>
-                                           </t>
-                                     </tr>
-                                      <tr>
-                                          <t t-foreach="exams" t-as="exam">
-
-                                              <th t-att-colspan="mark_type_count" >Obtained Marks</th>
-                                              <th  rowspan="2">Total Mark</th>
-                                              <th rowspan="2"   >Highest Mark</th>
-                                              <th rowspan="2">LG</th>
-                                              <th rowspan="2">GP</th>
-                                              <t t-if="fourth_subject==1">
-                                                    <th rowspan="2"  >GPA (without 4th Subject)</th>
-                                              </t>
-                                              <th rowspan="2">GPA</th>
-
-
                                           </t>
-                                      </tr>
-                                          <t t-foreach="exams" t-as="exam">
-                                              <t t-if="exam_first">
-                                                  <!--here I input <tr>-->
-                                             <p>&lt;tr&gt;</p>
-
-                                              <t t-if="tut_field==1">
-                                                    <td>Tut</td>
-                                              </t>
-                                              <t t-if="subj_field==1">
-                                                    <td>Sub</td>
-                                              </t>
-                                              <t t-if="obj_field==1">
-                                                    <td>Obj</td>
-                                              </t>
-                                              <t t-if="prac_field==1">
-                                                    <td>Prac</td>
-                                              </t>
-                                              <td>Total</td>
-                                              </t>
-                                              <t t-if="tut_field==1">
-                                                    <td>Tut</td>
-                                              </t>
-                                              <t t-if="subj_field==1">
-                                                    <td>Sub</td>
-                                              </t>
-                                              <t t-if="obj_field==1">
-                                                    <td>Obj</td>
-                                              </t>
-                                              <t t-if="prac_field==1">
-                                                    <td>Prac</td>
-                                              </t>
-                                              <t t-if="exam_last">
-                                                    <!--here I input </tr>-->
-
-                                                    <p>&lt;/tr&gt;</p>
-                                                </t>
-                                           </t>
+                                    </tr>
+                                    <tr>
+                                        <t t-foreach="exams" t-as="exam">
+                                            <th t-att-colspan="mark_type_count" >Obtained Marks</th>
+                                            <th  rowspan="2">Total Mark</th>
+                                            <th rowspan="2"   >Highest Mark</th>
+                                            <th rowspan="2">LG</th>
+                                            <th rowspan="2">GP</th>
+                                            <t t-if="fourth_subject==1">
+                                                <th rowspan="2"  >GPA (without 4th Subject)</th>
+                                            </t>
+                                            <th rowspan="2">GPA</th>
+                                        </t>
+                                    </tr>
+                                    <t t-foreach="exams" t-as="exam">
+                                        <t t-if="exam_first">
+                                              <!--here I input <tr>-->
+                                            <p>&lt;tr&gt;</p>
+                                            <t t-if="tut_field==1">
+                                                <td>Tut</td>
+                                            </t>
+                                            <t t-if="subj_field==1">
+                                                <td>Sub</td>
+                                            </t>
+                                            <t t-if="obj_field==1">
+                                                <td>Obj</td>
+                                            </t>
+                                            <t t-if="prac_field==1">
+                                                <td>Prac</td>
+                                            </t>
+                                            <td>Total</td>
+                                        </t>
+                                        <t t-if="tut_field==1">
+                                            <td>Tut</td>
+                                        </t>
+                                        <t t-if="subj_field==1">
+                                            <td>Sub</td>
+                                        </t>
+                                        <t t-if="obj_field==1">
+                                            <td>Obj</td>
+                                        </t>
+                                        <t t-if="prac_field==1">
+                                            <td>Prac</td>
+                                        </t>
+                                        <t t-if="exam_last">
+                                                <!--here I input </tr>-->
+                                            <p>&lt;/tr&gt;</p>
+                                        </t>
+                                    </t>
 
 
                                     <t t-foreach="subjects" t-as="subject">
-                                       <tr>
-                                           <t t-foreach="exams" t-as="exam">
+                                        <tr>
+                                            <t t-foreach="exams" t-as="exam">
                                                 <t t-set="gpa" t-value="get_gpa(student,exam,'non_optional','general')"/>
                                                 <t t-set="optional_gpa" t-value="get_gpa(student,exam,'optional','general')"/>
                                                 <t t-set="exam_obtained_total" t-value="get_exam_obtained_total(exam,student,'non_optional','general')"/>
                                                 <t t-set="exam_total" t-value="get_exam_total(exam,student,'non_optional','general')"/>
 
-                                               <t t-if="exam_first">
-                                                   <td>
+                                                <t t-if="exam_first">
+                                                    <td>
                                                         <span t-field="subject.display"/>
-                                                   </td>
+                                                    </td>
                                                     <t t-if="paper_field==1">
                                                        <td>
                                                            <span t-field="subject.paper"/>
                                                        </td>
                                                     </t>
-                                                   <t t-if="tut_field==1">
+                                                    <t t-if="tut_field==1">
                                                        <td>
                                                            <span t-field="subject.tut_mark"/>
                                                        </td>
-                                                   </t>
-                                                   <t t-if="subj_field==1">
+                                                    </t>
+                                                    <t t-if="subj_field==1">
                                                        <td>
                                                            <span t-field="subject.subj_mark"/>
                                                        </td>
-                                                   </t>
-                                                   <t t-if="obj_field==1">
+                                                    </t>
+                                                    <t t-if="obj_field==1">
                                                        <td><span t-field="subject.obj_mark"/></td>
-                                                   </t>
-                                                   <t t-if="prac_field==1">
+                                                    </t>
+                                                    <t t-if="prac_field==1">
                                                         <td><span t-field="subject.prac_mark"/></td>
-                                                   </t>
+                                                    </t>
 
-                                                   <td>
+                                                    <td>
                                                        <span t-field="subject.total_mark"/>
-                                                   </td>
+                                                    </td>
+                                                </t>
+                                                <t t-set="highest" t-value="get_highest(exam,subject)"/>
 
-                                               </t>
-
-                                                   <t t-set="highest" t-value="get_highest(exam,subject)"/>
-
-
-                                               <t t-foreach="get_marks(exam,subject,student)" t-as="mark">
-                                                   <t t-if="tut_field==1">
+                                                <t t-foreach="get_marks(exam,subject,student)" t-as="mark">
+                                                    <t t-if="tut_field==1">
                                                         <td><span t-field="mark.tut_mark"/></td>
-                                                   </t>
-                                                   <t t-if="subj_field==1">
+                                                    </t>
+                                                    <t t-if="subj_field==1">
                                                         <td><span t-field="mark.subj_mark"/></td>
-                                                   </t>
-                                                   <t t-if="obj_field==1">
+                                                    </t>
+                                                    <t t-if="obj_field==1">
                                                         <td><span t-field="mark.obj_mark"/></td>
-                                                   </t>
-                                                  <t t-if="prac_field==1">
+                                                    </t>
+                                                    <t t-if="prac_field==1">
                                                         <td><span t-field="mark.prac_mark"/></td>
-                                                  </t>
-                                                  <td><span t-field="mark.mark_scored"/></td>
+                                                    </t>
+                                                    <td><span t-field="mark.mark_scored"/></td>
 
-                                                  <td><span t-field="highest.mark_scored"/></td>
-                                                  <td><span t-field="mark.letter_grade"/></td>
-                                                  <td><span t-field="mark.grade_point"/></td>
-                                                   <t t-if="subject_first"><td t-att-rowspan="subject_count">
-                                                       <span t-esc="gpa"/></td>
+                                                    <td><span t-field="highest.mark_scored"/></td>
+                                                    <td><span t-field="mark.letter_grade"/></td>
+                                                    <td><span t-field="mark.grade_point"/></td>
+                                                    <t t-if="subject_first">
+                                                       <td t-att-rowspan="subject_count">
+                                                           <t t-if="gpa>=5">
+                                                               <t t-esc="5"/>
+                                                           </t>
+                                                           <t t-else="">
+                                                               <t t-esc="gpa"/>
+                                                           </t>
+                                                       </td>
                                                        <t t-if="fourth_subject>0">
                                                            <td t-att-rowspan="subject_count">
                                                                <t t-if="optional_gpa>2">
@@ -325,11 +324,13 @@
                                                            </td>
                                                        </t>
                                                    </t>
-
                                                 </t>
-                                                <t t-if="subject_last">
+                                            </t>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <t t-foreach="exams" t-as="exam">
                                                        <t t-if="exam_first">
-                                                           <p>&lt;/tr&gt;&lt;tr&gt;</p>
                                                            <td t-att-colspan="mark_type_count*2+2">
                                                                <t t-if="fourth_subject==0">
                                                                    Total Mark :
@@ -348,24 +349,24 @@
                                                            <td>
                                                                 <t t-esc="get_exam_obtained_total(exam,student,'non_optional','general')"/>
                                                            </td>
-                                                           <td t-att-colspan="4+fourth_subject"></td>
+                                                           <td></td>
+                                                           <td t-att-colspan="3+fourth_subject"></td>
                                                        </t>
                                                         <t t-else="">
-                                                           <td t-att-colspan="mark_type_count ">
-                                                               <t t-if="exam_total!=0">
+                                                            <td t-att-colspan="mark_type_count ">
+                                                                <t t-if="exam_total!=0">
                                                                    <t t-esc="round(exam_obtained_total/exam_total*100,2)"/> %
+                                                                </t>
+                                                                <t t-else="">0%</t>
+                                                            </td>
+                                                            <td><t t-esc="get_exam_obtained_total(exam,student,'non_optional','general')"/> </td>
+                                                            <td></td>
+                                                            <td t-att-colspan="4+fourth_subject"></td>
                                                         </t>
-                                                               <t t-else="">0%</t>
-                                                           </td>
-                                                           <td><t t-esc="get_exam_obtained_total(exam,student,'non_optional','general')"/> </td>
-                                                           <td t-att-colspan="4+fourth_subject"></td>
-                                                        </t>
-                                                   </t>
-                                            </t>
-                                       </tr>
-                                    </t>
+                                        </t>
+                                    </tr>
 
-<!--calculation for fourth/Optional subject-->
+                                        <!--calculation for fourth/Optional subject-->
 
                                         <t t-if="fourth_subject>0">
                                                  <tr><td colspan="100%">Additional Subjects: (Marks above 40% and GPA above 2.0)</td> </tr>
@@ -427,7 +428,7 @@
                                                           <td><span t-field="highest.mark_scored"/></td>
                                                           <td><span t-field="mark.letter_grade"/></td>
                                                           <td><span t-field="mark.grade_point"/></td>
-                                                           <t t-if="subject_first"><td t-att-rowspan="subject_count">
+                                                           <t t-if="subject_first"><td t-att-rowspan="optional_count">
                                                                </td>
                                                                <t t-if="fourth_subject>0">
                                                                    <td t-att-rowspan="optional_count">
@@ -438,25 +439,7 @@
 
 
                                                         </t>
-                                                       <t t-if="subject_last">
-                                                       <t t-if="exam_first">
-                                                            <p>&lt;/tr&gt;&lt;tr&gt;</p>
-                                                           <td t-att-colspan="mark_type_count*2+2">
-                                                                Total Mark obtained
-                                                           </td>
-                                                           <td>
-                                                                <t t-esc="get_exam_obtained_total(exam,student,'optional','general')"/>
-                                                           </td>
-                                                           <td t-att-colspan="4+fourth_subject"></td>
-                                                       </t>
-                                                        <t t-else="">
-                                                           <td t-att-colspan="mark_type_count "></td>
-                                                           <td><t t-esc="get_exam_obtained_total(exam,student,'optional','general')"/> </td>
-                                                           <td t-att-colspan="4+fourth_subject"></td>
-                                                        </t>
-
                                                    </t>
-                                                                                            </t>
                                                </tr>
                                             </t>
 
@@ -469,12 +452,13 @@
                                                                <p>percentage of total mark with additional subjects</p>
                                                            </td>
                                                            <td>
+                                                               <t t-esc="get_exam_obtained_total(exam,student,'optional','general')"/>
                                                            </td>
                                                            <td t-att-colspan="4+fourth_subject"></td>
                                                        </t>
                                                         <t t-else="">
                                                            <td t-att-colspan="mark_type_count "></td>
-                                                           <td> </td>
+                                                           <td><t t-esc="get_exam_obtained_total(exam,student,'optional','general')"/> </td>
                                                            <td t-att-colspan="4+fourth_subject"></td>
                                                         </t>
 
@@ -487,8 +471,6 @@
                                             <t t-foreach="extra_subjects" t-as="subject">
                                                <tr>
                                                    <t t-foreach="exams" t-as="exam">
-
-
                                                        <t t-if="exam_first">
                                                            <td>
                                                                 <span t-field="subject.display"/>
@@ -498,6 +480,7 @@
                                                                    <span t-field="subject.paper"/>
                                                                </td>
                                                             </t>
+
                                                            <t t-if="tut_field==1">
                                                                <td>
                                                                    <span t-field="subject.tut_mark"/>
@@ -518,7 +501,6 @@
                                                            <td>
                                                                <span t-field="subject.total_mark"/>
                                                            </td>
-
                                                        </t>
 
                                                        <t t-set="highest" t-value="get_highest(exam,subject)"/>
@@ -542,38 +524,22 @@
                                                           <td><span t-field="highest.mark_scored"/></td>
                                                           <td><span t-field="mark.letter_grade"/></td>
                                                           <td><span t-field="mark.grade_point"/></td>
-                                                           <t t-if="subject_first"><td t-att-rowspan="subject_count">
-                                                               <span t-esc="get_gpa(student,exam,'non_optional','extra')"/></td>
+                                                           <t t-if="subject_first">
+                                                               <td t-att-rowspan="extra_count">
+                                                                    <span t-esc="get_gpa(student,exam,'non_optional','extra')"/></td>
                                                                <t t-if="fourth_subject>0">
                                                                    <td t-att-rowspan="extra_count">
                                                                        <!--<t t-esc="get_gpa(student,exam,'non_optional','extra')+(get_gpa(student,exam,'optional','extra')-2)/subject_count"/>-->
                                                                    </td>
                                                                </t>
                                                            </t>
-
-
-                                                        </t>
-                                                       <t t-if="subject_last">
-                                                       <t t-if="exam_first">
-                                                            <p>&lt;/tr&gt;&lt;tr&gt;</p>
-                                                           <td t-att-colspan="mark_type_count*2+2">
-                                                                Total Mark
-                                                           </td>
-                                                           <td>
-                                                                <t t-esc="get_exam_obtained_total(exam,student,'non_optional','extra')"/>
-                                                           </td>
-                                                           <td t-att-colspan="4+fourth_subject"></td>
                                                        </t>
-                                                        <t t-else="">
-                                                           <td t-att-colspan="mark_type_count "></td>
-                                                           <td><t t-esc="get_exam_obtained_total(exam,student,'non_optional','extra')"/> </td>
-                                                           <td t-att-colspan="4+fourth_subject"></td>
-                                                        </t>
                                                    </t>
-                                                    </t>
                                                </tr>
                                             </t>
+
                                         </t>
+
 
                                     </table>
 
