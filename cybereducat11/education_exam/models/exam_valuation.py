@@ -15,18 +15,18 @@ class EducationExamValuation(models.Model):
     division_id = fields.Many2one('education.class.division', string='Division', required=True)
     subject_id = fields.Many2one('education.syllabus', string='Subject', required=True)
     teachers_id = fields.Many2one('education.faculty', string='Evaluator')
-    mark = fields.Float(string='Max Mark', related='subject_id.total_mark')
-    pass_mark = fields.Float(string='Pass Mark', related='subject_id.pass_mark')
-    tut_mark = fields.Float('Tutorial Mark',related='subject_id.tut_mark')
-    tut_pass_mark = fields.Float('Tutorial Pass Mark',related='subject_id.tut_pass')
-    subj_mark = fields.Float('Subjective Mark',related='subject_id.subj_mark')
-    subj_pass_mark = fields.Float('Subjective Pass Mark',related='subject_id.subj_pass')
+    mark = fields.Integer(string='Max Mark', related='subject_id.total_mark')
+    pass_mark = fields.Integer(string='Pass Mark', related='subject_id.pass_mark')
+    tut_mark = fields.Integer('Tutorial Mark',related='subject_id.tut_mark')
+    tut_pass_mark = fields.Integer('Tutorial Pass Mark',related='subject_id.tut_pass')
+    subj_mark = fields.Integer('Subjective Mark',related='subject_id.subj_mark')
+    subj_pass_mark = fields.Integer('Subjective Pass Mark',related='subject_id.subj_pass')
 
-    obj_mark = fields.Float('Objective Mark',related='subject_id.obj_mark')
-    obj_pass_mark = fields.Float('Objective Pass Mark',related='subject_id.obj_pass')
+    obj_mark = fields.Integer('Objective Mark',related='subject_id.obj_mark')
+    obj_pass_mark = fields.Integer('Objective Pass Mark',related='subject_id.obj_pass')
 
-    prac_mark = fields.Float('Practical Mark',related='subject_id.prac_mark')
-    prac_pass_mark = fields.Float('Practical Pass Mark',related='subject_id.prac_pass')
+    prac_mark = fields.Integer('Practical Mark',related='subject_id.prac_mark')
+    prac_pass_mark = fields.Integer('Practical Pass Mark',related='subject_id.prac_pass')
 
     state = fields.Selection([('draft', 'Draft'), ('completed', 'Completed'), ('cancel', 'Canceled')], default='draft')
     valuation_line = fields.One2many('exam.valuation.line', 'valuation_id', string='Students')
@@ -36,7 +36,7 @@ class EducationExamValuation(models.Model):
                                     related='division_id.academic_year_id', store=True)
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env['res.company']._company_default_get())
-    highest=fields.Float('Highest mark Obtained')
+    highest=fields.Integer('Highest mark Obtained')
     # @api.multi
     # def get_highest(self):
     #     for rec in self:
@@ -228,11 +228,11 @@ class StudentsExamValuationLine(models.Model):
 
     student_id = fields.Many2one('education.student', string='Students')
     student_name = fields.Char(string='Students')
-    mark_scored = fields.Float(string='Mark',compute='calculate_marks')
-    tut_mark=fields.Float(string='Tutorial',default=0)
-    subj_mark=fields.Float(string='Subjective' ,default=0)
-    obj_mark=fields.Float(string='Objective',default=0)
-    prac_mark=fields.Float(string='Practical',default=0)
+    mark_scored = fields.Integer(string='Mark',compute='calculate_marks')
+    tut_mark=fields.Integer(string='Tutorial',default=0)
+    subj_mark=fields.Integer(string='Subjective' ,default=0)
+    obj_mark=fields.Integer(string='Objective',default=0)
+    prac_mark=fields.Integer(string='Practical',default=0)
     pass_or_fail = fields.Boolean(string='Pass/Fail')
     valuation_id = fields.Many2one('education.exam.valuation', string='Valuation Id')
     letter_grade=fields.Char('Letter Grade')

@@ -313,7 +313,13 @@
                                                        <t t-if="fourth_subject>0">
                                                            <td t-att-rowspan="subject_count">
                                                                <t t-if="optional_gpa>2">
-                                                                    <t t-esc="round((gpa+(optional_gpa-2)/subject_count),2)"/>
+                                                                    <t t-set="final_gpa" t-value= "round((gpa+(optional_gpa-2)/subject_count),2)"/>
+                                                                   <t t-if="final_gpa>=5">
+                                                                       <t t-esc="5"/>
+                                                                   </t>
+                                                                   <t t-else="">
+                                                                       <t t-esc="final_gpa"/>
+                                                                   </t>
                                                                </t>
                                                                <t t-else=""><span t-esc="gpa"/></t>
                                                            </td>
