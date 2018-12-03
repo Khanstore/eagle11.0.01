@@ -63,7 +63,7 @@ class EducationExam(models.Model):
         if all_completed==1:
             self.state = 'close'
         else:
-            raise ValidationError(_("Comlete all valuation first!"))
+            raise ValidationError(_("Complete all valuation first!"))
 
     @api.multi
     def cancel_exam(self):

@@ -18,9 +18,9 @@ class EducationExamResults(models.Model):
                                     related='division_id.academic_year_id', store=True)
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env['res.company']._company_default_get())
-    total_pass_mark = fields.Float(string='Total Pass Mark', store=True, readonly=True, compute='_total_marks_all')
-    total_max_mark = fields.Float(string='Total Max Mark', store=True, readonly=True, compute='_total_marks_all')
-    total_mark_scored = fields.Float(string='Total Marks Scored', store=True, readonly=True, compute='_total_marks_all')
+    total_pass_mark = fields.Integer(string='Total Pass Mark', store=True, readonly=True, compute='_total_marks_all')
+    total_max_mark = fields.Integer(string='Total Max Mark', store=True, readonly=True, compute='_total_marks_all')
+    total_mark_scored = fields.Integer(string='Total Marks Scored', store=True, readonly=True, compute='_total_marks_all')
     overall_pass = fields.Boolean(string='Overall Pass/Fail', store=True, readonly=True, compute='_total_marks_all')
     @api.depends('subject_line.mark_scored')
     def _total_marks_all(self):
@@ -44,17 +44,17 @@ class EducationExamResults(models.Model):
 class ResultsSubjectLine(models.Model):
     _name = 'results.subject.line'
 
-    tut_mark = fields.Float(string='Tutorial')
-    subj_mark = fields.Float(string='Subjective')
-    obj_mark = fields.Float(string='Objective')
-    prac_mark = fields.Float(string='Practical')
+    tut_mark = fields.Integer(string='Tutorial')
+    subj_mark = fields.Integer(string='Subjective')
+    obj_mark = fields.Integer(string='Objective')
+    prac_mark = fields.Integer(string='Practical')
     letter_grade=fields.Char('Grade')
     grade_point=fields.Float('GP')
     name = fields.Char(string='Name')
     subject_id = fields.Many2one('education.syllabus', string='Subject')
-    max_mark = fields.Float(string='Max Mark')
-    pass_mark = fields.Float(string='Pass Mark')
-    mark_scored = fields.Float(string='Mark Scored')
+    max_mark = fields.Integer(string='Max Mark')
+    pass_mark = fields.Integer(string='Pass Mark')
+    mark_scored = fields.Integer(string='Mark Scored')
     pass_or_fail = fields.Boolean(string='Pass/Fail')
     result_id = fields.Many2one('education.exam.results', string='Result Id')
     exam_id = fields.Many2one('education.exam', string='Exam')
@@ -67,13 +67,21 @@ class ResultsSubjectLine(models.Model):
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env['res.company']._company_default_get())
 
-    # @api.constrains
-    # def _compute_grade(self):
-    #     for record in self:
-    #         per_obtained=(record.mark_scored * 100)/record.max_mark
-    #         grades = self.env['education.result.grading'].search([['id', '>', '0']])
-    #         for gr in grades:
-    #             if gr.min_per <= per_obtained and \
-    #                     gr.max_per >= per_obtained:
-    #                 record.grade = gr.result
-    #                 record.score = gr.score
+class exam_result_summery(models.Model):
+    _name = 'education.exam.student.summary'
+    exam_id =fields.Many2one('education.exam','Exam')
+    student_id=fields.Many2one('education.student',string='Student')
+    total_mark=fields.Integer('Total')
+    total_gpa=fields.Many2one('education.result.grading', 'Total GPA')
+    total_lg=fields.Integer( 'Total GPA')
+    additional_mark=fields.Integer('additional')
+    additional_gpa = fields.Many2one('education.result.grading', 'additional GPA')
+    additional_lg = fields.Integer( 'additional Grade')
+    extra_mark=fields.Integer('Extra')
+    extra_gpa = fields.Many2one('education.result.grading', 'Extra GPA')
+    extra_lg = fields.Integer('Extra Grade')
+    net_mark=fields.Integer('net')
+    net_gpa = fields.Many2one('education.result.grading', 'NET GPA')
+    net_lg = fields.Integer('GPA')
+    position_class=fields.Integer("Position in Class")
+    position_section=fields.Integer("Position in Section")

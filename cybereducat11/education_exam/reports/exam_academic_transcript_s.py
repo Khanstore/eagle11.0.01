@@ -213,17 +213,25 @@ class acdemicTranscripts(models.AbstractModel):
                 merit_section.append(0)
                 fail_in_extra.append(fail_extra)
             if exam_sl==1:
-                data={'student':stu,'section':section,"exam"+ str(exam.id) :exa,
-                      'score'+ str(exam.id) :scor,'merit_class'+ str(exam.id) :merit_class,'merit_section'+ str(exam.id) :merit_section,
-                      'score': merit_class, 'merit_class': merit_class,
-                      'merit_section' : merit_section,'fail_in_extra'+ str(exam.id) :merit_class,'fail_in_extra':merit_class}
-                df= pd.DataFrame(data)     #here score value =0 , as merit_class value is 0 , it is used as scoew
+                data={'student':stu,
+                      'section':section,"exam"+ str(exam.id) :exa,
+                      'score'+ str(exam.id) :scor,
+                      'merit_class'+ str(exam.id) :merit_class,
+                      'merit_section'+ str(exam.id) :merit_section,
+                      'score': merit_class,
+                      'merit_class': merit_class,
+                      'merit_section' : merit_section,
+                      'fail_in_extra'+ str(exam.id) :merit_class,
+                      'fail_in_extra':merit_class}
+                df= pd.DataFrame(data)
+                exam_sl=2#here score value =0 , as merit_class value is 0 , it is used as score
             else:
                 df.insert(3, 'exam'+str(exam.id), exa, allow_duplicates=False)
                 df.insert(4, 'score'+str(exam.id), scor, allow_duplicates=False)
                 df.insert(4, 'merit_class'+str(exam.id), merit_class, allow_duplicates=False)
                 df.insert(4, 'merit_section'+str(exam.id), merit_section, allow_duplicates=False)
                 df.insert(4, 'fail_in_extra'+str(exam.id), fail_in_extra, allow_duplicates=False)
+                exam_sl+=1
         if len(exam_list)>0: #if more than one exam 0 will represent the combined result
             exam_list.append(0)
         section_list = df.section.unique()
