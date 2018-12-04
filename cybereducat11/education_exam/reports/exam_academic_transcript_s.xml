@@ -334,7 +334,13 @@
                                                            <td t-att-colspan="mark_type_count*2+2">
                                                                <t t-if="fourth_subject==0">
                                                                    Total Mark :
-                                                                   <p>Percentage of total mark : <t t-esc="round(exam_obtained_total/exam_total*100,2)"/>% </p>
+                                                                   <p>Percentage of total mark :
+                                                                        <t t-if="exam_total==0">0</t>
+                                                                       <t t-else="">
+                                                                            <t t-esc="round(exam_obtained_total/exam_total*100,2)"/>
+                                                                       </t>
+                                                                   %</p>
+                                                                       <!--</t>-->
                                                                </t>
                                                                <t t-else="">
                                                                     Total Mark Without Additional Subject:
