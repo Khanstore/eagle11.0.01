@@ -48,7 +48,9 @@ class examEvaluation(models.AbstractModel):
         grand_total=self.env['report.education_exam.report_exam_academic_transcript_s'].get_exam_total(exam,student_history,optional,evaluation)
         return grand_total
 
-
+    def get_gpa(self, student_history, exam, optional, evaluation_type):
+        gpa = self.env['report.education_exam.report_exam_academic_transcript_s'].get_gpa(student_history,exam,optional,evaluation_type)
+        return gpa
 
 
     def get_gradings(self,obj):
@@ -78,4 +80,6 @@ class examEvaluation(models.AbstractModel):
             'get_date': self.get_date,
             'get_sections': self.get_sections,
             'get_marks': self.get_marks,
+            'get_gpa': self.get_gpa,
+            'get_exam_obtained_total': self.get_exam_obtained_total,
         }

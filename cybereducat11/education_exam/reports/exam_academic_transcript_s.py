@@ -79,7 +79,11 @@ class acdemicTranscripts(models.AbstractModel):
         return marks
 
     def get_exam_obtained_total(self,exam,student_history,optional,evaluation):
-        student = student_history.student_id
+        student_or_history=getattr(student_history.student_id,'id','history')
+        if student_or_history=='history':
+            student = student_history
+            student_history=self.env['education.class.history'].search([('student_id','=',student.id),('academic_year_id','=',exam.academic_year.id)])
+        else: student = student_history.student_id
         marks = self.env['results.subject.line'].search(
             [('exam_id', '=', exam.id),('student_id', '=', student.id)])
         total=0
@@ -97,9 +101,11 @@ class acdemicTranscripts(models.AbstractModel):
             additional=self.get_exam_total(exam,student_history,'optional','general')
             if additional>0:
                 sur_plus=optional_total-(additional*40/100)
-                if surplus>0:
-                    return surplus+general_total
+                if sur_plus>0:
+                    return sur_plus+general_total
                 else: return general_total
+            else:
+                return general_total
 
         if optional == 'optional':
             return optional_total
@@ -140,35 +146,59 @@ class acdemicTranscripts(models.AbstractModel):
             [('exam_id', '=', exam.id), ('subject_id', '=', subject.id)], limit=1, order='mark_scored DESC')
         return highest
     def get_gpa(self,student_history,exam,optional,evaluation_type):
-        student = student_history.student_id
+        student_or_history = getattr(student_history.student_id, 'id', 'history')
+        if student_or_history == 'history':
+            student = student_history
+            student_history = self.env['education.class.history'].search(
+                [('student_id', '=', student.id), ('academic_year_id', '=', exam.academic_year.id)])
+        else:
+            student = student_history.student_id
         gp=0
-        count=0
+        s_count=0
+        optional_gp=0
+        o_count=0
+        extra_gp=0
+        extra_count=0
+        general_gp=0
+        general_count=0
         records = self.env['results.subject.line'].search(
             [('exam_id', '=',exam.id ),  ('student_id', '=', student.id)])
 
         for rec in records:
-            if optional !="optional":
-                if evaluation_type=='general':
-                    if rec.subject_id not in student_history.optional_subjects :
-                        if rec.subject_id.evaluation_type=='general':
-                            gp=gp+ rec.grade_point
-                            count=count+1
-                if evaluation_type=='extra':
-                    if rec.subject_id not in student_history.optional_subjects :
-                        if rec.subject_id.evaluation_type=='extra':
-                            gp=gp+ rec.grade_point
-                            count=count+1
+            if rec.subject_id in student_history.optional_subjects:
+                optioal_gp = optional_gp + rec.grade_point
+                o_count = o_count + 1
+            elif rec.subject_id.evaluation_type == 'general':
+                general_gp = general_gp + rec.grade_point
+                general_count = general_count + 1
+            else:
+                extra_gp = extra_gp + rec.grade_point
+                extra_count = extra_count + 1
+        if optional=='all':
+            if o_count!=0:
+                # since optional  gpa over 2 is added
+                additional_gp=(optioal_gp/o_count)-2
+                gp=(general_gp+additional_gp)/general_count
+                if gp>5:
+                    return 5
+                else:
+                    return round(gp,2)
+
+        elif optional !="optional":
+            if o_count!=0:
+                return round(optional_gp/o_count,2)
+            else: return 0
+        elif evaluation_type =="extra":
+            if extra_count!=0:
+                return round(extra_gp/extra_count,2)
+            else: return 0
+        elif evaluation_type =="general":
+            if general_count!=0:
+                return round(general_gp/general_count,2)
+            else: return 0
 
 
-            elif rec.subject_id  in student_history.optional_subjects:
-                    gp = gp + rec.grade_point
-                    count = count + 1
 
-        if count==0:
-            return 0
-        else :
-            return round(gp/count,2)
-        # float("{0:.2f}".format(gp/count))
 
     def get_merit_list(self,object):
         list=[]
