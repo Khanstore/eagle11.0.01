@@ -37,7 +37,16 @@ class examEvaluation(models.AbstractModel):
         marks=self.env['results.subject.line'].search([('exam_id','=',exam.id),('subject_id','=',subject.id),('student_id','=',student.id)])
         return marks
 
+    def get_exam_obtained_total(self, exam, student_history, optional, evaluation):
+        grand_total = self.env['report.education_exam.report_exam_academic_transcript_s'].get_exam_obtained_total( exam,
+                                                                                                                   student_history,
+                                                                                                                   optional,
+                                                                                                                    evaluation)
+        return grand_total
 
+    def get_exam_total(self,exam,student_history,optional,evaluation):
+        grand_total=self.env['report.education_exam.report_exam_academic_transcript_s'].get_exam_total(exam,student_history,optional,evaluation)
+        return grand_total
 
 
 

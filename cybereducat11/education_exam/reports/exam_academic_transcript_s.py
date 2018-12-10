@@ -83,46 +83,57 @@ class acdemicTranscripts(models.AbstractModel):
         marks = self.env['results.subject.line'].search(
             [('exam_id', '=', exam.id),('student_id', '=', student.id)])
         total=0
-        general=0
-        extra=0
+        general_total=0
+        extra_total=0
+        optional_total=0
+        for subject in marks:
+            if subject.subject_id in student_history.optional_subjects:
+                optional_total=optional_total+ subject.mark_scored
+            elif subject.subject_id.evaluation_type == 'general':
+                    general_total=general_total+ subject.mark_scored
+            elif subject.subject_id.evaluation_type=='extra':
+                        extra_total=extra_total+subject.mark_scored
+        if optional=='all':
+            additional=self.get_exam_total(exam,student_history,'optional','general')
+            if additional>0:
+                sur_plus=optional_total-(additional*40/100)
+                if surplus>0:
+                    return surplus+general_total
+                else: return general_total
 
-        if optional=='optional':
-            for subject in marks:
-                if subject.subject_id in student_history.optional_subjects:
-                    total=total+ subject.mark_scored
+        if optional == 'optional':
+            return optional_total
+        elif evaluation == 'general':
+            return general_total
+        elif evaluation == 'extra':
+            return extra_total
 
-        elif evaluation=='general':
-            for subject in marks:
-                if subject.subject_id not in student_history.optional_subjects:
-                    if subject.subject_id.evaluation_type == 'general':
-                        total=total+ subject.mark_scored
-        elif evaluation=='extra':
-            for subject in marks:
-                if subject.subject_id not in student_history.optional_subjects:
-                    if subject.subject_id.evaluation_type=='extra':
-                        total=total+subject.mark_scored
-        return total
     def get_exam_total(self,exam,student_history,optional,evaluation):
         student = student_history.student_id
         marks = self.env['results.subject.line'].search(
             [('exam_id', '=', exam.id), ('student_id', '=', student.id)])
         total = 0
-        if optional == 'optional':
-            for subject in marks:
-                if subject.subject_id in student_history.optional_subjects:
-                    total = total + subject.subject_id.total_mark
+        optional_total=0
+        extra_total=0
+        general_total=0
 
-        elif evaluation == 'general':
-            for subject in marks:
-                if subject.subject_id not in student_history.optional_subjects:
-                    if subject.subject_id.evaluation_type == 'general':
-                        total = total + subject.subject_id.total_mark
-        elif evaluation == 'extra':
-            for subject in marks:
-                if subject.subject_id not in student_history.optional_subjects:
-                    if subject.subject_id.evaluation_type == 'extra':
-                        total = total + subject.subject_id.total_mark
-        return total
+        for subject in marks:
+            if subject.subject_id in student_history.optional_subjects:
+                optional_total = optional_total + subject.subject_id.total_mark
+
+            elif subject.subject_id not in student_history.optional_subjects:
+                if subject.subject_id.evaluation_type == 'general':
+                    general_total = general_total + subject.subject_id.total_mark
+                elif subject.subject_id.evaluation_type == 'extra':
+                    extra_total = extra_total + subject.subject_id.total_mark
+        if optional=='optional':
+            return optional_total
+        elif evaluation=='general':
+            return general_total
+        elif evaluation=='extra':
+            return extra_total
+        elif optional=='all':
+            return total
 
     def get_highest(self,exam,subject):
         highest = self.env['results.subject.line'].search(
