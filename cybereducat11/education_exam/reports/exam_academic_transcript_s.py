@@ -183,8 +183,14 @@ class acdemicTranscripts(models.AbstractModel):
                     return 5
                 else:
                     return round(gp,2)
+            else:
+                gp=general_gp
+                gpa= round(gp/general_count,2)
+                if gpa>4.99:
+                    gpa=5
+                return gpa
 
-        elif optional !="optional":
+        elif optional =="optional":
             if o_count!=0:
                 return round(optional_gp/o_count,2)
             else: return 0
