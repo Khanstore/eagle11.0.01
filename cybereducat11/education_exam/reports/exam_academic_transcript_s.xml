@@ -7,6 +7,7 @@
                             .right_top{
                             float:right;
                             padding-top:25px;
+                            padding-right:0px;
                             }
                             .left_top{
                             float:left;
@@ -78,7 +79,7 @@
  <div class="row" text-align="center" width="100%">
                                         <div  style="position: absolute;
                                             left: 0;
-                                            top: 50px;
+                                            top: 90px;
                                             width: 100%;
                                             text-align: center;
                                             font-size: 18px;">
@@ -87,12 +88,17 @@
                                                 <t t-set="exams" t-value="get_exams(docs)"/>
                                                 <t t-foreach="exams" t-as="exam">
                                                     <t t-if="exam_last">
+                                                        <span> &amp; </span>
                                                         <t t-esc="exam.exam_type.name "/>
-                                                        <span> Exam- </span>
+                                                        <span> Exam - </span>
                                                         <t t-esc="exam.academic_year.name"/>
                                                     </t>
                                                     <t t-else="">
-                                                        <t t-esc="exam.exam_type"/><span>, </span>
+                                                        <t t-if="exam_first"></t>
+                                                        <t t-else="">, </t>
+                                                        <t t-esc="exam.exam_type.name"/>
+
+
                                                     </t>
                                                 </t>
                                             </h6>
@@ -231,6 +237,7 @@
                         </t>
 
 <!--   ######    Variables for the report    -->
+
                         <div class="page" page-breake-inside="avoid">
                             <div class="oe_structure">
                                 <div class="dont_split">
@@ -646,7 +653,7 @@
 
                                 </div>
 
-
+                                <div class="row"><br/></div>
                                 <div class="row">
 
                                    <div class = 'col-xs-4'>Position in order to Section:
@@ -655,7 +662,7 @@
                                             <t t-esc="num2serial(int(sl.iloc[0]['merit_section']))"/>
                                        </div>
 
-                                   <div class = 'col-xs-4'>Date Of Return</div>
+                                   <div class = 'col-xs-4'> Date Of Return</div>
                                     <div class = 'col-xs-4'>Mark Obtained:  <t t-if="exam_total!=0">
                                                                                 <t t-esc="round(exam_obtained_total/exam_total*100,2)"/> %
                                                                             </t>
@@ -667,9 +674,10 @@
                                    </div>
                                 </div>
                                 <div class="row">
-                                <br></br>
-                                <br></br>
-                                <br></br>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
                                 </div>
 
 
