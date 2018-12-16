@@ -265,20 +265,19 @@ class acdemicTranscripts(models.AbstractModel):
                       'score'+ str(exam.id) :scor,
                       'merit_class'+ str(exam.id) :merit_class,
                       'merit_section'+ str(exam.id) :merit_section,
-                      'score': merit_class,
+                      'score': 0,
                       'merit_class': merit_class,
                       'merit_section' : merit_section,
                       'fail_in_extra'+ str(exam.id) :merit_class,
                       'fail_in_extra':merit_class}
                 df= pd.DataFrame(data)
-                exam_sl=2#here score value =0 , as merit_class value is 0 , it is used as score
             else:
                 df.insert(3, 'exam'+str(exam.id), exa, allow_duplicates=False)
                 df.insert(4, 'score'+str(exam.id), scor, allow_duplicates=False)
                 df.insert(4, 'merit_class'+str(exam.id), merit_class, allow_duplicates=False)
                 df.insert(4, 'merit_section'+str(exam.id), merit_section, allow_duplicates=False)
                 df.insert(4, 'fail_in_extra'+str(exam.id), fail_in_extra, allow_duplicates=False)
-                exam_sl+=1
+            exam_sl+=1
         if len(exam_list)>0: #if more than one exam 0 will represent the combined result
             exam_list.append(0)
         section_list = df.section.unique()
@@ -287,15 +286,18 @@ class acdemicTranscripts(models.AbstractModel):
             sections.append(section)
         sections.append(0)
 
-        # if len(section_list)>0: # if there are more than one section, 0 represent the Class
-        #     numpy.append(section_list, 0)
 
         # calculate merit list
         exam_name=''
         for  exam in exam_list:
             if exam!=0:
                 exam_name=str(exam)
+                for index, row in df.iterrows():
+                    df.loc[df['student'] == row['student'], 'score'] = row['score'] + row['score' + exam_name]
+                    if row['fail_in_extra' + exam_name] != 0:
+                        df.loc[df['student'] == row['student'], 'fail_in_extra'] = 1
             else:exam_name=''
+
 
             for section in sections:
                 if section ==0:
@@ -319,10 +321,7 @@ class acdemicTranscripts(models.AbstractModel):
                         out_place = out_place + 1
                         place = out_place
                     df.loc[df['student'] == row[ 'student'], merit + exam_name] = place
-                    if exam != 0:
-                        df.loc[df['student'] == row[ 'student'], 'score'] = row[ 'score']+row[ 'score'+exam_name]
-                        if  row['fail_in_extra'+exam_name]!=0:
-                            df.loc[df['student'] == row['student'], 'fail_in_extra']=1
+
         return df
 
     def num2serial(self,numb):

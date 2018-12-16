@@ -9,6 +9,8 @@
 
                      <t t-call="web.external_layout">
                         <t t-set="exam_list" t-value="get_exams(docs)" />
+                          <t t-set="result" t-value="get_merit_list(docs)" />
+                         <t t-set="sections" t-value="result.section.unique()"/>
                          <t t-set="exam_count" t-value="0"/>
 
                          <t t-foreach="exam_list" t-as="exam">
@@ -49,7 +51,7 @@
                             <div class="oe_structure">
                             <div class="row">
                                 <table width="100%">
-                                    <t t-set="result" t-value="get_merit_list(docs)" />
+
                                         <tr><td rowspan="2">Roll</td><td rowspan="2">ID</td><td rowspan="2">Name</td>
                                             <t t-if="exam_count>1" >
                                                 <t t-foreach="exam_list" t-as="exam">
