@@ -1,10 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <template id="external_layout_blank">
+            <style>
+                            table, th, td {
+                                     border: 1px solid black;
+                                    padding-bottom:3px;
+                                    padding-left:3px;
+                                    padding-top:3px;
+                                    padding-right:3px;
+                                    align:center;
+                                    text-align: center;
+                                    }
+                            .right_top{
+                            float:right;
+                            padding-top:25px;
+                            }
+                            .left_top{
+                            float:left;
+                            padding-left:10px;
+                            padding-top:25px;
+                            }
+                            .right{
+                            float:right;
+                            padding-top:10px;
+                            padding-left:80px;
+                            padding-right:10px;
+                            padding-bottom:10px;
+                            }
+
+                            .rotated {
+                            writing-mode: tb-rl;
+                            transform: rotate(-90deg);
+                             -webkit-transform: rotate(-90deg);
+                             -moz-transform: rotate(-90deg);
+                             -o-transform: rotate(-90deg);
+                             -ms-transform: rotate(-90deg);
+
+
+                            }
+                            .dont_split{
+                               page-break-inside: avoid;
+                                }
+
+
+
+
+                        </style>
+
+        <div class="header" style="width:100%">
+            <div style="width: 15%;float: left;">
+
+                <img src='/web/binary/company_logo' style="width:100%"/>
+            </div>
+            <div style="width: 67%;float: left; ">
+                <h4 style="text-transform: uppercase;" t-if="res_company.name"><span t-field="res_company.name"/></h4>
+                    <h5 t-if="res_company.street"><span t-field="res_company.street"/><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t></h5>
+                    <h5 t-if="res_company.country_id"><span t-field="res_company.country_id"/></h5>
+            </div>
+            <div class="right_top">
+
+                <table style="border: 1px solid black;">
+                    <tr style="border: 1px solid black;"><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
+
+                        <t t-foreach="get_gradings(o)" t-as="g">
+                            <tr><td> <span t-field="g.result"/></td>
+                                <td> <span t-field="g.min_per"/>-<span t-field="g.max_per"/>%</td>
+                                <td> <span t-field="g.score"/></td>
+                            </tr>
+                        </t>
+
+                </table>
+            </div>
+
+
+        </div>
+
+        <div class="article o_report_layout_boxed">
+          <t t-raw="0" />
+        </div>
+
+        <div class="footer o_boxed_footer">
+            <div class="text-center">
+
+                this is my custom footer
+                <div>
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
 
         <template id="report_exam_academic_transcript_s">
             <t t-call="web.html_container">
-                <t t-call="web.external_layout">
+                <t t-call="education_exam.external_layout_blank">
                 <t t-set="merit_list" t-value="get_merit_list(docs)"/>
                 <t t-foreach="get_students(docs)" t-as="student">
 
@@ -22,11 +111,11 @@
                                     }
                             .right_top{
                             float:right;
-                            padding-top:5px;
+                            padding-top:65px;
                             }
                             .left_top{
                             float:left;
-                            padding-top:10px;
+                            padding-top:65px;
                             }
                             .right{
                             float:right;
@@ -119,40 +208,35 @@
 
 <!--   ######    Variables for the report    -->
 <div class="header">
-    <div style="width: 20%;float: left;">
-    <img src='/web/binary/company_logo' style="width:100%"/>
-</div>
-    <div style="width: 80%;float: left;">
-    <h2 t-if="res_company.name"><span t-field="res_company.name"/></h2>
-        <h4 t-if="res_company.street"><span t-field="res_company.street"/><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t></h4>
-        <h4 t-if="res_company.country_id"><span t-field="res_company.country_id"/></h4>
-</div>
+
 </div>
                         <div class="page" page-breake-inside="avoid">
                             <div class="oe_structure">
                                 <div class="dont_split">
-                                  <div class="row" width="100%" >
-                                     <div text-align="center" ><br/><br/><h2>Academic Transcript</h2></div>
-
-
-                                    <div class="right_top">
-                                        <table>
-                                            <tr><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
-
-                                                <t t-foreach="get_gradings(o)" t-as="g">
-                                                    <tr><td> <span t-field="g.result"/></td>
-                                                        <td> <span t-field="g.min_per"/>-<span t-field="g.max_per"/>%</td>
-                                                        <td> <span t-field="g.score"/></td>
-                                                    </tr>
+                                    <div class="row" text-align="center" width="100%">
+                                        <div  style="position: absolute;
+                                            left: 0;
+                                            top: 50px;
+                                            width: 100%;
+                                            text-align: center;
+                                            font-size: 18px;">
+                                                <h4>Academic Transcript</h4>
+                                            <h4>
+                                                <t t-foreach="exams" t-as="exam">
+                                                    <t t-if="exam_last">
+                                                        <t t-esc="exam.exam_type.name "/>
+                                                        <span> Exam- </span>
+                                                        <t t-esc="exam.academic_year.name"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <t t-esc="exam.exam_type"/><span>, </span>
+                                                    </t>
                                                 </t>
-
-                                        </table>
+                                            </h4>
+                                        </div>
                                     </div>
-                                      <div class="right_top" width="50px"></div>
-
-                                </div>
                                 <div class="row" width="100%">
-                                    <div class="right_top" padding-top="5px">
+                                    <div class="right_top" >
                                         <table>
                                             <tr><td colspan="2">Information</td><td colspan="2">Co-curricular Activity </td></tr>
                                             <tr><td> Number of Students:</td><td width="40px"><t t-esc="len(merit_list.index)"/> </td><td> Behavior</td><td width="40px"></td></tr>
