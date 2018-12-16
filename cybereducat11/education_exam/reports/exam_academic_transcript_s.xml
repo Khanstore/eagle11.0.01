@@ -118,13 +118,21 @@
                         </t>
 
 <!--   ######    Variables for the report    -->
-
+<div class="header">
+    <div style="width: 20%;float: left;">
+    <img src='/web/binary/company_logo' style="width:100%"/>
+</div>
+    <div style="width: 80%;float: left;">
+    <h2 t-if="res_company.name"><span t-field="res_company.name"/></h2>
+        <h4 t-if="res_company.street"><span t-field="res_company.street"/><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t></h4>
+        <h4 t-if="res_company.country_id"><span t-field="res_company.country_id"/></h4>
+</div>
+</div>
                         <div class="page" page-breake-inside="avoid">
                             <div class="oe_structure">
                                 <div class="dont_split">
                                   <div class="row" width="100%" >
-                                <div class="col-xs-4"></div>
-                                      <div class="col-xs-4"><div ><h2><br></br>Academic Transcript</h2></div></div>
+                                     <div text-align="center" ><br/><br/><h2>Academic Transcript</h2></div>
 
 
                                     <div class="right_top">

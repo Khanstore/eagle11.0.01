@@ -6,7 +6,7 @@
             <field name="name">examination_valuation_form.form</field>
             <field name="model">education.exam.valuation</field>
             <field name="arch" type="xml">
-                <form create="false">
+                <form>
                     <header>
                         <button name="valuation_completed" type="object"
                                 attrs="{'invisible': ['|', ('mark_sheet_created', '=', False),('state', '!=', 'draft')]}"
@@ -104,7 +104,7 @@
             <field name="name">examination_valuation_tree.tree</field>
             <field name="model">education.exam.valuation</field>
             <field name="arch" type="xml">
-                <tree create="false">
+                <tree>
                     <field name="exam_id"/>
                     <field name="subject_id"/>
                     <field name="class_id"/>

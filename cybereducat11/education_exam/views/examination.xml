@@ -51,7 +51,7 @@
                             <page string="Subjects">
                                 <field name="subject_line" attrs="{'readonly': [('state', '!=', 'draft')]}">
                                     <tree editable="bottom">
-                                        <field name="display"/>
+                                        <field name="subject_id"/>
                                         <field name="date"/>
                                         <field name="time_from" widget="float_time"/>
                                         <field name="time_to" widget="float_time"/>

@@ -59,6 +59,7 @@ class Company(models.Model):
     external_report_layout = fields.Selection([
         ('background', 'Background'),
         ('boxed', 'Boxed'),
+        ('blank', 'Blank'),
         ('clean', 'Clean'),
         ('standard', 'Standard'),
     ], string='Document Template')

@@ -22,6 +22,7 @@
         <link href="/web/static/src/less/report.less" rel="stylesheet" type="text/less"/>
         <link href="/web/static/src/less/layout_background.less" rel="stylesheet" type="text/less"/>
         <link href="/web/static/src/less/layout_boxed.less" rel="stylesheet" type="text/less"/>
+        <link href="/web/static/src/less/layout_blank.less" rel="stylesheet" type="text/less"/>
         <link href="/web/static/src/less/layout_clean.less" rel="stylesheet" type="text/less"/>
     </template>
 
@@ -217,7 +218,15 @@
             </div>
         </div>
     </template>
+    <template id="external_layout_blank">
 
+
+        <div class="article o_report_layout_blank">
+          <t t-raw="0" />
+        </div>
+
+
+    </template>
     <template id="external_layout_clean">
         <div class="header o_clean_header">
             <div class="row">
@@ -327,6 +336,9 @@
         </t>
         <t t-if="company.external_report_layout == 'boxed'">
             <t t-call="web.external_layout_boxed"><t t-raw="0"/></t>
+        </t>
+        <t t-if="company.external_report_layout == 'blank'">
+            <t t-call="web.external_layout_blank"><t t-raw="0"/></t>
         </t>
         <t t-if="company.external_report_layout == 'clean'">
             <t t-call="web.external_layout_clean"><t t-raw="0"/></t>
