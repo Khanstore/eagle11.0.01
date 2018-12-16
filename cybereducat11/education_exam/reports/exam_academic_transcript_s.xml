@@ -3,15 +3,7 @@
     <data>
         <template id="external_layout_blank">
             <style>
-                            table, th, td {
-                                     border: 1px solid black;
-                                    padding-bottom:3px;
-                                    padding-left:3px;
-                                    padding-top:3px;
-                                    padding-right:3px;
-                                    align:center;
-                                    text-align: center;
-                                    }
+
                             .right_top{
                             float:right;
                             padding-top:25px;
@@ -53,12 +45,23 @@
 
                 <img src='/web/binary/company_logo' style="width:100%"/>
             </div>
-            <div style="width: 67%;float: left; ">
+            <div style="width: 67%;float: left; padding-left:10px">
                 <h4 style="text-transform: uppercase;" t-if="res_company.name"><span t-field="res_company.name"/></h4>
                     <h5 t-if="res_company.street"><span t-field="res_company.street"/><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t></h5>
                     <h5 t-if="res_company.country_id"><span t-field="res_company.country_id"/></h5>
             </div>
             <div class="right_top">
+                 <style>
+                            table, th, td {
+                                     border: 1px solid black;
+                                    padding-bottom:3px;
+                                    padding-left:3px;
+                                    padding-top:3px;
+                                    padding-right:3px;
+                                    align:center;
+                                    text-align: center;
+                                    }
+                 </style>
 
                 <table style="border: 1px solid black;">
                     <tr style="border: 1px solid black;"><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
@@ -72,7 +75,29 @@
 
                 </table>
             </div>
-
+ <div class="row" text-align="center" width="100%">
+                                        <div  style="position: absolute;
+                                            left: 0;
+                                            top: 50px;
+                                            width: 100%;
+                                            text-align: center;
+                                            font-size: 18px;">
+                                                <h4>Academic Transcript</h4>
+                                            <h6>
+                                                <t t-set="exams" t-value="get_exams(docs)"/>
+                                                <t t-foreach="exams" t-as="exam">
+                                                    <t t-if="exam_last">
+                                                        <t t-esc="exam.exam_type.name "/>
+                                                        <span> Exam- </span>
+                                                        <t t-esc="exam.academic_year.name"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <t t-esc="exam.exam_type"/><span>, </span>
+                                                    </t>
+                                                </t>
+                                            </h6>
+                                        </div>
+                                    </div>
 
         </div>
 
@@ -83,7 +108,6 @@
         <div class="footer o_boxed_footer">
             <div class="text-center">
 
-                this is my custom footer
                 <div>
                     Page: <span class="page"/> / <span class="topage"/>
                 </div>
@@ -207,34 +231,10 @@
                         </t>
 
 <!--   ######    Variables for the report    -->
-<div class="header">
-
-</div>
                         <div class="page" page-breake-inside="avoid">
                             <div class="oe_structure">
                                 <div class="dont_split">
-                                    <div class="row" text-align="center" width="100%">
-                                        <div  style="position: absolute;
-                                            left: 0;
-                                            top: 50px;
-                                            width: 100%;
-                                            text-align: center;
-                                            font-size: 18px;">
-                                                <h4>Academic Transcript</h4>
-                                            <h4>
-                                                <t t-foreach="exams" t-as="exam">
-                                                    <t t-if="exam_last">
-                                                        <t t-esc="exam.exam_type.name "/>
-                                                        <span> Exam- </span>
-                                                        <t t-esc="exam.academic_year.name"/>
-                                                    </t>
-                                                    <t t-else="">
-                                                        <t t-esc="exam.exam_type"/><span>, </span>
-                                                    </t>
-                                                </t>
-                                            </h4>
-                                        </div>
-                                    </div>
+
                                 <div class="row" width="100%">
                                     <div class="right_top" >
                                         <table>
