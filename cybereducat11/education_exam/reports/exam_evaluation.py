@@ -51,12 +51,6 @@ class examEvaluation(models.AbstractModel):
     def get_gpa(self, student_history, exam, optional, evaluation_type):
         gpa = self.env['report.education_exam.report_exam_academic_transcript_s'].get_gpa(student_history,exam,optional,evaluation_type)
         return gpa
-    def get_lg(self, student_history, exam, optional, evaluation_type):
-        gpa = self.env['report.education_exam.report_exam_academic_transcript_s'].get_gpa(student_history,exam,optional,evaluation_type)
-        grades = self.env['education.result.grading'].search([('score', '<=', gpa)] ,limit=1, order='score DESC')
-
-        gpa = grades.result
-        return gpa
 
 
     def get_gradings(self,obj):
@@ -87,6 +81,5 @@ class examEvaluation(models.AbstractModel):
             'get_sections': self.get_sections,
             'get_marks': self.get_marks,
             'get_gpa': self.get_gpa,
-            'get_lg': self.get_lg,
             'get_exam_obtained_total': self.get_exam_obtained_total,
         }
