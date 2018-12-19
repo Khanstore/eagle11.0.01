@@ -49,13 +49,20 @@
                         </style>
                         <div class="page">
                             <div class="oe_structure">
+                                <div class="row" style="text-align: center;"><h4>
+                                    <t t-foreach="exam_list" t-as="ex">
+                                        <t t-if="ex_first">
+                                           <span>Merit List (</span> <t t-esc="ex.class_id.name"/> <span> - </span><t t-esc="ex.academic_year.name"/><span>)</span>
+                                        </t>
+                                    </t>
+                                </h4></div>
                             <div class="row">
                                 <table width="100%">
 
-                                        <tr><td rowspan="2">Roll</td><td rowspan="2">ID</td><td rowspan="2">Name</td>
+                                        <tr><td rowspan="2">Roll</td><td rowspan="2">ID</td><td rowspan="2">Name</td><td rowspan="2">Category</td>
                                             <t t-if="exam_count>1" >
                                                 <t t-foreach="exam_list" t-as="exam">
-                                                    <td colspan="3"><t t-esc="exam.name"/></td>
+                                                    <td colspan="3"><t t-esc="exam.exam_type.name"/></td>
                                                 </t>
                                                 <td colspan="3">Total</td><p>&lt;/tr&gt;</p><p>&lt;tr&gt;</p>
                                                 <t t-foreach="exam_list" t-as="exam">
@@ -75,6 +82,7 @@
                                                 <td><t t-esc="result.at[i,'student'].student_id.student_id"/></td>
                                                 <!--<td><t t-esc="result.at[i,'exam'].name"/></td>-->
                                                 <td><t t-esc="result.at[i,'student'].student_id.name"/></td>
+                                                <td style="text-align: center;"><t t-esc="result.at[i,'student'].student_id.student_category"/></td>
                                                 <!--<td><t t-esc="result.at[i,'section']"/></td>-->
                                                 <t t-set="exam_no" t-value="exam"/>
                                                 <t t-foreach="exam_list" t-as="exam">
