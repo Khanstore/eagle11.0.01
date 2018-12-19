@@ -2,17 +2,15 @@
 <odoo>
     <data>
         <template id="external_layout_blank">
-            <style>
+<style>
 
                             .right_top{
                             float:right;
-                            padding-top:25px;
-                            padding-right:0px;
+                            padding-top:65px;
                             }
                             .left_top{
                             float:left;
-                            padding-left:10px;
-                            padding-top:25px;
+                            padding-top:65px;
                             }
                             .right{
                             float:right;
@@ -38,8 +36,7 @@
 
 
 
-
-                        </style>
+</style>
 
         <div class="header" style="width:100%">
             <div style="width: 15%;float: left;">
@@ -51,8 +48,11 @@
                     <h5 t-if="res_company.street"><span t-field="res_company.street"/><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t></h5>
                     <h5 t-if="res_company.country_id"><span t-field="res_company.country_id"/></h5>
             </div>
-            <div class="right_top">
-                 <style>
+            <div style="width: 15%;float: left;">
+
+
+                <table >
+                     <style>
                             table, th, td {
                                      border: 1px solid black;
                                     padding-bottom:3px;
@@ -62,10 +62,8 @@
                                     align:center;
                                     text-align: center;
                                     }
-                 </style>
-
-                <table style="border: 1px solid black;">
-                    <tr style="border: 1px solid black;"><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
+                        </style>
+                    <tr ><td>Letter <br></br> Grade </td><td>Grade <br></br>interval </td><td>Grade <br></br>point</td></tr>
 
                         <t t-foreach="get_gradings(o)" t-as="g">
                             <tr><td> <span t-field="g.result"/></td>
@@ -88,7 +86,9 @@
                                                 <t t-set="exams" t-value="get_exams(docs)"/>
                                                 <t t-foreach="exams" t-as="exam">
                                                     <t t-if="exam_last">
+                                                        <t t-if="len(exams)>1">
                                                         <span> &amp; </span>
+                                                        </t>
                                                         <t t-esc="exam.exam_type.name "/>
                                                         <span> Exam - </span>
                                                         <t t-esc="exam.academic_year.name"/>
@@ -107,7 +107,7 @@
 
         </div>
 
-        <div class="article o_report_layout_boxed">
+        <div class="article o_report_layout_blank">
           <t t-raw="0" />
         </div>
 
@@ -130,13 +130,15 @@
 
 
                         <style>
-                            table, th, td {
+                            table, th, td{
                                      border: 1px solid black;
-                                    padding-bottom:3px;
-                                    padding-left:3px;
-                                    padding-top:3px;
-                                    padding-right:3px;
+                                    vertical-align: middle;
                                     align:center;
+                                    font-size:16px;
+                                    padding-top:2px
+                                    padding-left:2px;
+                                    padding-right:2px;
+                                    padding-bottom:2px;
                                     text-align: center;
                                     }
                             .right_top{
@@ -238,7 +240,7 @@
 
 <!--   ######    Variables for the report    -->
 
-                        <div class="page" page-breake-inside="avoid">
+                        <div class="page" page-breake-inside="avoid" >
                             <div class="oe_structure">
                                 <div class="dont_split">
 

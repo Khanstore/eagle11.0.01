@@ -14,16 +14,26 @@
                              <t t-set="exam_count" t-value="exam_count+1"/>
                          </t>
                         <style>
-                            table, th, td {
+                            table {
                                      border: 1px solid black;
                                     padding-bottom:3px;
-                                    padding-left:3px;
+                                    padding-left:0px;
                                     padding-top:3px;
-                                    padding-right:3px;
+                                    padding-right:0px;
+                                    vertical-align: middle;
+                                    align:center;
                                     }
-                            .dont_split{
-                               page-break-inside: avoid;
-                                }
+                            tbody ,tr, th, td   {
+                                    padding-bottom:3px;
+                                    padding-left:0px;
+                                    padding-top:3px;
+                                    padding-right:0px;
+                                    vertical-align: middle;
+                                    align:center;
+                                    page-break-inside:avoid !important;
+                                    page-break-after:avoid !important;
+                                    page-break-before:avoid !important; }
+                            tfoot {page-break-inside:auto}
 
                             .right_top{
                             float:right;
@@ -50,7 +60,7 @@
                                 <div class="row">
 
 
-                                    <table width="100%">
+                                    <table width="100%" class="table table-condensed">
                                         <THEAD>
 <!--heading row of evaluation Table-->
                                             <tr><td colspan ="100%" >
@@ -112,8 +122,9 @@
                                                 </t>
                                             </tr>
                                         </THEAD>
-                                        <TBODY class="dont_split">
+                                        <tfoot></tfoot>
                                             <t t-foreach="get_students(section)" t-as="student">
+                                               <tbody style="page-break-inside: avoid !important;">
                                                 <t t-set="grand_total" t-value="0"/>
 
                                                 <tr>
@@ -121,14 +132,14 @@
                                                     <t t-foreach="exam_list" t-as="exam">
                                                         <t t-set="exam_total" t-value="0"/>
                                                         <t t-if="exam_first">
-                                                            <td t-att-rowspan="exam_count*2" class="dont_split">
+                                                            <td t-att-rowspan="exam_count*2" >
                                                                 <span  t-field="student.student_id" />
                                                             </td>
                                                             <td t-att-rowspan="exam_count*2">
-                                                                <span t-field="student.roll_no"  class="dont_split"/>
+                                                                <span t-field="student.roll_no"  />
                                                             </td>
                                                             <td t-att-rowspan="exam_count*2">
-                                                                <span t-field="student.name"  class="dont_split"/>
+                                                                <span t-field="student.name"  />
                                                             </td>
                                                         </t>
                                                             <td rowspan="2"><span t-field="exam.exam_type"/> </td>
@@ -176,8 +187,8 @@
                                                                 </t>
                                                             </t>
                                                             <span> &lt;/tr &gt;</span>
-                                                            <span>&lt;tr &gt;</span>
-                                                            <t t-foreach="subjects" t-as="subject">
+                                                            <span>&lt;tr style="page-break-before:avoid !important; page-break-inside:avoid !important; page-break-after:auto" &gt;</span>
+                                                                 <t t-foreach="subjects" t-as="subject">
                                                                 <td>
                                                                     <t t-set="marks" t-value="get_marks(exam,subject,student)"/>
                                                                     <t t-esc="marks.letter_grade"/>
@@ -190,8 +201,8 @@
 
                                                     </t>
                                                 </tr>
+                                               </tbody>
                                             </t>
-                                        </TBODY>
                                     </table>
                                 </div>
                             </div>
