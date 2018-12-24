@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "dsblsc",
+    'name': "dsblsc12",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        This app is designed to import Dhaka Shikhsa Bord School's data """,
 
     'description': """
-        Long description of module's purpose
+       This app is designed to import Dhaka Shikhsa Bord School's data 
     """,
 
-    'author': "My Company",
+    'author': "SM Ashraf",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -20,24 +19,47 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','education_core','sms_frame','eschool_sms','eagle_mass_sms'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-# 'data/Class1-A/education.application.csv',
-#         'data/Class1-B/education.application.csv',
-#         'data/Class1-C/education.application.csv',
-#         'data/Class2-A/education.application.csv',
-#         'data/Class2-B/education.application.csv',
-#         'data/Class2-C/education.application.csv',
-#         'data/Class3-A/education.application.csv',
-#         'data/Class3-B/education.application.csv',
-#         'data/Class3-C/education.application.csv',
-#         'data/Class4-A/education.application.csv',
-#         'data/Class4-B/education.application.csv',
-#         'data/Class5-A/education.application.csv',
-#         'data/Class5-B/education.application.csv',
+        'security/ir.model.access.csv',
+        'data/all_student_2018/class_1/A/education.application.csv',
+        'data/all_student_2018/class_1/B/education.application.csv',
+        'data/all_student_2018/class_1/C/education.application.csv',
+        'data/all_student_2018/class_2/A/education.application.csv',
+        'data/all_student_2018/class_2/B/education.application.csv',
+        'data/all_student_2018/class_2/C/education.application.csv',
+        'data/all_student_2018/class_3/A/education.application.csv',
+        'data/all_student_2018/class_3/B/education.application.csv',
+        'data/all_student_2018/class_3/C/education.application.csv',
+        'data/all_student_2018/class_4/A/education.application.csv',
+        'data/all_student_2018/class_4/B/education.application.csv',
+        'data/all_student_2018/class_5/A/education.application.csv',
+        'data/all_student_2018/class_5/B/education.application.csv',
+        'data/all_student_2018/class_6/A/education.application.csv',
+        'data/all_student_2018/class_6/B/education.application.csv',
+        'data/all_student_2018/class_7/A/education.application.csv',
+        'data/all_student_2018/class_7/B/education.application.csv',
+        'data/all_student_2018/class_8/A/education.application.csv',
+        'data/all_student_2018/class_8/B/education.application.csv',
+        'data/all_student_2018/class_9/A/education.application.csv',
+        'data/all_student_2018/class_9/B/education.application.csv',
+        'data/all_student_2018/class_9/C/education.application.csv',
+        'data/all_student_2018/class_9/H/education.application.csv',
+        'data/all_student_2018/class_10/A/education.application.csv',
+        'data/all_student_2018/class_10/B/education.application.csv',
+        'data/all_student_2018/class_10/C/education.application.csv',
+        'data/all_student_2018/class_10/H/education.application.csv',
+        'data/all_student_2018/class_11/A/education.application.csv',
+        'data/all_student_2018/class_11/B/education.application.csv',
+        'data/all_student_2018/class_11/C/education.application.csv',
+        'data/all_student_2018/class_11/D/education.application.csv',
+        'data/all_student_2018/class_11/H/education.application.csv',
+        'data/all_student_2018/class_12/A/education.application.csv',
+        'data/all_student_2018/class_12/B/education.application.csv',
+        'data/all_student_2018/class_12/C/education.application.csv',
+
         'data/sms.number.csv',
         'data/sms.template.csv',
         'views/views.xml',

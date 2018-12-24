@@ -2,38 +2,48 @@
 <odoo>
     <data>
 
+        <template id="external_layout_evaluation">
+        <div class="header">
+             <div style="width: 15%;float: left;">
+                <img src='/web/binary/company_logo' style="width:100%"/>
+            </div>
+            <div style="width: 15%;float: left;">
+                <h4 style="text-transform: uppercase;" t-if="res_company.name"><span t-field="res_company.name"/></h4>
+                <h5 t-if="res_company.street"><span t-field="res_company.street"/><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t></h5>
+                    <h5 t-if="res_company.country_id"><span t-field="res_company.country_id"/></h5>
+            </div>
+        </div>
+
+        <div class="article">
+          <t t-raw="0" />
+        </div>
+
+        <div class="footer o_boxed_footer">
+           <div class="footer">
+
+            </div>
+        </div>
+    </template>
+
         <template id="report_exam_evaluation">
             <t t-call="web.html_container">
                 <t t-foreach="get_sections(docs)" t-as="section">
                 <t t-set="subjects" t-value="get_subjects(section,docs)"/>
 
-                     <t t-call="web.external_layout">
+                     <t t-call="education_exam.external_layout_evaluation">
                         <t t-set="exam_list" t-value="get_exams(docs)" />
                          <t t-set="exam_count" t-value="0"/>
                          <t t-foreach="exam_list" t-as="exam">
                              <t t-set="exam_count" t-value="exam_count+1"/>
                          </t>
                         <style>
-                            table {
+                            table,tbody ,tr, th, td {
                                      border: 1px solid black;
-                                    padding-bottom:3px;
                                     padding-left:0px;
-                                    padding-top:3px;
                                     padding-right:0px;
                                     vertical-align: middle;
                                     align:center;
                                     }
-                            tbody ,tr, th, td   {
-                                    padding-bottom:3px;
-                                    padding-left:0px;
-                                    padding-top:3px;
-                                    padding-right:0px;
-                                    vertical-align: middle;
-                                    align:center;
-                                    page-break-inside:avoid !important;
-                                    page-break-after:avoid !important;
-                                    page-break-before:avoid !important; }
-                            tfoot {page-break-inside:auto}
 
                             .right_top{
                             float:right;

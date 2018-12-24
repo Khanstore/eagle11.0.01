@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_dsblsc_dsblsc,dsblsc.dsblsc,model_dsblsc_dsblsc,,1,0,0,0
+access_dsblsc_import_previous_student,access_dsblsc_import_previous_student,model_dsblsc_import_previous_student,education_core.group_education_principal,1,1,1,0
