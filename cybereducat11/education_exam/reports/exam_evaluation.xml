@@ -7,7 +7,7 @@
              <div style="width: 15%;float: left;">
                 <img src='/web/binary/company_logo' style="width:100%"/>
             </div>
-            <div style="width: 15%;float: left;">
+            <div style="width: 15%;float: left;padding-left:10px">
                 <h4 style="text-transform: uppercase;" t-if="res_company.name"><span t-field="res_company.name"/></h4>
                 <h5 t-if="res_company.street"><span t-field="res_company.street"/><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t></h5>
                     <h5 t-if="res_company.country_id"><span t-field="res_company.country_id"/></h5>
@@ -37,14 +37,25 @@
                              <t t-set="exam_count" t-value="exam_count+1"/>
                          </t>
                         <style>
-                            table,tbody ,tr, th, td {
+                            table,tbody ,tr, th {
                                      border: 1px solid black;
                                     padding-left:0px;
                                     padding-right:0px;
-                                    vertical-align: middle;
+                                    padding-top:0px;
+                                    padding-bottom:0px;
+                                    text-align: center;
                                     align:center;
                                     }
-
+                            td{
+                                border: 1px solid black;
+                                    padding-left:0px;
+                                    padding-right:0px;
+                                    padding-top:0px;
+                                    padding-bottom:0px;
+                                    text-align: center;
+                                    vertical-align: middle;
+                                    align:center;
+                                }
                             .right_top{
                             float:right;
                             padding-top:0px;
@@ -134,7 +145,7 @@
                                         </THEAD>
                                         <tfoot></tfoot>
                                             <t t-foreach="get_students(section)" t-as="student">
-                                               <tbody style="page-break-inside: avoid !important;">
+                                               <tbody style="page-break-inside: avoid !important;border: 1px solid black;">
                                                 <t t-set="grand_total" t-value="0"/>
 
                                                 <tr>
