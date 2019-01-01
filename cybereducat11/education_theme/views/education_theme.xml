@@ -16,7 +16,7 @@
         <template id="education_theme.layout_footer" inherit_id="web.menu_secondary" name="Footer Submenu">
             <xpath expr="//div[@class='o_sub_menu_footer']" position="replace">
                 <div class="o_sub_menu_footer">
-                    <a href="https://www.cybrosys.com" target="_blank"><img src="/education_theme/static/src/img/powered_by.png" width="20%"/></a>
+                    <a href="https://www.eagle-it-services.com" target="_blank"><img src="/education_theme/static/src/img/powered_by.png" width="20%"/></a>
                 </div>
             </xpath>
         </template>

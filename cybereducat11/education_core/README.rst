@@ -27,7 +27,7 @@ This module manage these Models.
 Contacts
 ========
 * EducationalERP <http://educationalerp.com/>
-* Cybrosys Techno Solutions <https://www.cybrosys.com>
+* Cybrosys Techno Solutions <https://www.eagle-it-services.com>
 
 
 Depends
@@ -66,4 +66,4 @@ Maintainer
 
 This module is maintained by Cybrosys Technologies.
 
-For support and more information, please visit https://www.cybrosys.com.
+For support and more information, please visit https://www.eagle-it-services.com.

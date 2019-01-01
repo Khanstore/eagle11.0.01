@@ -10,3 +10,4 @@
 "access_sms_compose","access_sms_compose","model_sms_compose",,1,1,1,1
 "access_sms_gateway_twilio","access_sms_gateway_twilio","model_sms_gateway_twilio",,1,0,0,0
 "access_sms_gateway_ssl","access_sms_gateway_ssl","model_sms_gateway_ssl",,1,0,0,0
+access_sms_gateway_me,access_sms_gateway_me,model_sms_gateway_me,,1,0,0,0

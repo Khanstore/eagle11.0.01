@@ -133,6 +133,7 @@
                             table, th, td{
                                      border: 1px solid black;
                                     vertical-align: middle;
+                                    font-size:60px;
                                     align:center;
                                     font-size:16px;
                                     padding-top:2px
@@ -379,7 +380,7 @@
                                                         <td><span t-field="subject.prac_mark"/></td>
                                                     </t>
 
-                                                    <td>
+                                                    <td style="align:center;">
                                                        <span t-field="subject.total_mark"/>
                                                     </td>
                                                 </t>

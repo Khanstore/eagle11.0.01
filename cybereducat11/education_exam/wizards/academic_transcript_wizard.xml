@@ -46,7 +46,7 @@
 
 
         <menuitem id="academic_transcript_sub_menu" parent="education_exam.examination_result_main_menu"
-                  action="act_academic_transcript_wizard" name="Academic Transcript" sequence="20"/>
+                  action="act_academic_transcript_wizard" name="Academic Transcript" sequence="20" groups="base.group_user"/>
 
     </data>
 </odoo>

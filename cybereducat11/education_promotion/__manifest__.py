@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ###################################################################################
-#    A part of Educational ERP Project <https://www.educationalerp.com>
+#    A part of Educational ERP Project <https://www.eagle-it-services.com>
 #
 #    Cybrosys Technologies Pvt. Ltd.
-#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.cybrosys.com>).
+#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.eagle-it-services.com>).
 #    Author: Treesa Maria Jude(treesa@cybrosys.in)
 #
 #    This program is free software: you can modify
@@ -30,7 +30,7 @@
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
-    'website': "https://www.educationalerp.com",
+    'website': "https://www.eagle-it-services.com",
     'depends': ['education_exam'],
     'data': [
         'views/education_promotion.xml',

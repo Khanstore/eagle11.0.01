@@ -28,7 +28,7 @@ Bugs are tracked on GitHub Issues. In case of trouble, please check there if you
 
 Credits
 =======
-* Cybrosys Techno Solutions <https://www.cybrosys.com>
+* Cybrosys Techno Solutions <https://www.eagle-it-services.com>
 
 Author
 ------
@@ -40,4 +40,4 @@ Maintainer
 
 This module is maintained by Cybrosys Technologies.
 
-For support and more information, please visit https://www.cybrosys.com.
+For support and more information, please visit https://www.eagle-it-services.com.

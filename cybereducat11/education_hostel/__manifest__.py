@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 ###################################################################################
-#    A part of Educational ERP Project <https://www.educationalerp.com>
+#    A part of Educational ERP Project <https://www.eagle-it-services.com>
 #
 #    Cybrosys Technologies Pvt. Ltd.
-#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.cybrosys.com>).
-#    Author: Anusha P P (<https://www.cybrosys.com>)
+#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.eagle-it-services.com>).
+#    Author: Anusha P P (<https://www.eagle-it-services.com>)
 #
 #    This program is free software: you can modify
 #    it under the terms of the GNU Affero General Public License (AGPL) as
@@ -28,7 +28,7 @@
     'category': 'Industries',
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
-    'website': "http://www.educationalerp.com",
+    'website': "http://www.eagle-it-services.com",
     'depends': ['base', 'education_core', 'education_fee'],
     'data': [
         'security/security.xml',

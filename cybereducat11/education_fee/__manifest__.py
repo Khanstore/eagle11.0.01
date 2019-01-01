@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ###################################################################################
-#    A part of Educational ERP Project <http://www.educationalerp.com>
+#    A part of Educational ERP Project <http://www.eagle-it-services.com>
 #
 #    Cybrosys Technologies Pvt. Ltd.
-#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.cybrosys.com>).
+#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.eagle-it-services.com>).
 #    Author: Akhilesh N S(<akhilesh@cybrosys.in>)
 #
 #    This program is free software: you can modify
@@ -27,7 +27,7 @@
     "author": "Cybrosys Techno Solutions",
     "category": 'Educational',
     "company": "Cybrosys Techno Solutions",
-    "website": "http://www.educationalerp.com",
+    "website": "http://www.eagle-it-services.com",
     'summary': 'Manage students fee',
     'description': """Manage students fee""",
     "depends": ['base', 'account', 'account_invoicing', 'education_core'],

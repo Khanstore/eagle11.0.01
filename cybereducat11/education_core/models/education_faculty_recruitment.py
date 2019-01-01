@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ###################################################################################
-#    A part of Educational ERP Project <https://www.educationalerp.com>
+#    A part of Educational ERP Project <https://www.eagle-it-services.com>
 #
 #    Cybrosys Technologies Pvt. Ltd.
-#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.cybrosys.com>).
+#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.eagle-it-services.com>).
 #    Author: Niyas Raphy (niyas@cybrosys.in)
 #            Nikhil krishnan (nikhil@cybrosys.in)
 #

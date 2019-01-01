@@ -180,7 +180,7 @@
                                                                         <t t-if="subject.prac_mark>0">
                                                                              <td rowspan="2"><t t-esc="mark.prac_mark" /></td>
                                                                          </t>
-                                                                        <td><t t-esc="mark.mark_scored" /></td>
+                                                                        <td style="vertical-align: middle;"><t t-esc="mark.mark_scored" /></td>
                                                                         <t t-set="exam_total" t-value="exam_total+mark.mark_scored"/>
 
                                                                     </t>

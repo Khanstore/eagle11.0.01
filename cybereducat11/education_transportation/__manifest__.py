@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ###################################################################################
-#    A part of Educational ERP Project <https://www.educationalerp.com>
+#    A part of Educational ERP Project <https://www.eagle-it-services.com>
 #
 #    Cybrosys Technologies Pvt. Ltd.
-#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.cybrosys.com>).
+#    Copyright (C) 2018-TODAY Cybrosys Technologies (<https://www.eagle-it-services.com>).
 #    Author: Anusha P P (anusha@cybrosys.in)
 #
 #    This program is free software: you can modify
@@ -28,7 +28,7 @@
     'category': 'Industries',
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
-    'website': "http://www.educationalerp.com",
+    'website': "http://www.eagle-it-services.com",
     'depends': ['base', 'fleet', 'education_core', 'education_fee'],
     'data': [
         'security/transport_security.xml',
