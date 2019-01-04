@@ -127,9 +127,9 @@
                             <field name="prev_school" attrs="{'readonly': [('state', '=', 'done')]}"/>
 
                     </group>
-                     <notebook>
-                         <page string="Personal Details">
-                        <group col="4">
+                     <!--<notebook>-->
+                         <!--<page string="Personal Details">-->
+                        <group col="4" string="Personal Details">
                             <field name="date_of_birth" attrs="{'readonly': [('state', '=', 'done')]}"/>
                             <field name="blood_group" attrs="{'readonly': [('state', '=', 'done')]}"/>
                             <field name="mother_tongue" attrs="{'readonly': [('state', '=', 'done')]}"/>
@@ -141,9 +141,9 @@
                             <!--<field name="caste_id" attrs="{'readonly': [('state', '=', 'done')]}"/>-->
                             <!--<field name="guardian_name" attrs="{'readonly': [('state', '=', 'done')] }"/>-->
                         </group>
-                     </page>
-                         <page string="Parent Details">
-                             <group col="4">
+                     <!--</page>-->
+                         <!--<page string="Parent Details">-->
+                             <group col="4" string="Parent Details">
                                  <separator string="Father's Information" colspan="3"/>
                                  <field name="father_NID" colspan="4"/>
                                  <field name="father_mobile" />
@@ -167,10 +167,10 @@
                                  <!--<field name="mother_m_name_b" nolabel='1' placeholder="নামের মধ্যাংশ" colspan="2"/>-->
                                  <!--<field name="mother_l_name_b" nolabel='1' placeholder="নামের শেষ অংশ" colspan="2"/>-->
                              </group>
-                         </page>
+                         <!--</page>-->
 
-                         <page string="Guardian's Information">
-                             <group col="6">
+                         <!--<page string="Guardian's Information">-->
+                             <group col="6" string="Guardian's Information">
                                 <separator String="Guardians Information" colspan="6"/>
                                  <field name="guardian_relation" attrs="{'readonly': [('state', '=', 'done')]}" colspan="6"/>
 
@@ -181,10 +181,10 @@
                                  <!--<field name="guardian_m_name" nolabel='1' placeholder="Middle Name" colspan="2"/>-->
                                  <!--<field name="guardian_l_name" nolabel='1' placeholder="Last Name" colspan="2"/>-->
                             </group>
-                         </page>
-                         <page string="Address">
-                             <separator string="Present Address"/>
-                             <div class="o_address_format">
+                         <!--</page>-->
+                         <!--<page string="Address">-->
+                             <!--<separator string="Present Address"/>-->
+                             <div class="o_address_format" string="Present Address">
                                 <field name="street" required="1" placeholder="House No / Village..." class="o_address_street" attrs="{'readonly': [('state', '=', 'done')]}"/>
                                 <field name="street2" placeholder="Road/ Post Office..." class="o_address_street" attrs="{'readonly': [('state', '=', 'done')]}"/>
                                 <field name="city" placeholder="Area/Thana" class="o_address_city" attrs="{'readonly': [('state', '=', 'done')]}"/>
@@ -207,8 +207,8 @@
                                 </div>
                             </group>
                         </div>
-                         </page>
-                         <page string="Contact Details">
+                         <!--</page>-->
+                         <!--<page string="Contact Details">-->
                              <separator string="Contact Details"/>
 
                             <group>
@@ -218,8 +218,8 @@
                             <field name="phone" attrs="{'readonly': [('state', '=', 'done')]}"/>
                             <field name="mobile" attrs="{'readonly': [('state', '=', 'done')]}"/>
                             </group>
-                         </page>
-                     </notebook>
+                         <!--</page>-->
+                     <!--</notebook>-->
 
 
                      </div>
