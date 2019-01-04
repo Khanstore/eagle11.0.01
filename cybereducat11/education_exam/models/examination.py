@@ -81,19 +81,41 @@ class EducationExam(models.Model):
         self.name = name
         self.state = 'ongoing'
     @api.multi
+    def check_student_section_subject(self,section_id,subject_id):
+        sections=self.env['education.class.division'].search([('academic_year_id','=',self.academic_year.id),('class_id','=',self.class_id.id)])
+        for section in sections:
+            if section.id==section_id:
+                section_in_history=self.env['education.class.history'].search([('class_id.id', '=', section.id)])
+                record_count=len(section_in_history)
+                if record_count>0:
+                    for rec in section_in_history.compulsory_subjects:
+                        if rec.id==subject_id:
+                            return True
+                    for rec in section_in_history.selective_subjects:
+                        if rec.id==subject_id:
+                            return True
+                    for rec in section_in_history.optional_subjects:
+                        if rec.id==subject_id:
+                            return True
+        return False
+    @api.multi
     def create_result_sheet(self):
         sections=self.env['education.class.division'].search([('academic_year_id','=',self.academic_year.id),('class_id','=',self.class_id.id)])
         subjects=self.subject_line
         for section in sections:
             for subject in subjects:
-                self.env['education.exam.valuation'].create({
-                    'exam_id':self.id,
-                    'class_id':self.class_id.id,
-                    'division_id':section.id,
-                    # 'section_id':self.section,
-                    'subject_id':subject.subject_id.id,
-                    'academic_year':self.academic_year.id,
-                })
+                # check student present for this subject
+                check_student = self.check_student_section_subject(section.id, subject.subject_id.id)
+                if check_student==True:
+
+                    self.env['education.exam.valuation'].create({
+                        'exam_id':self.id,
+                        'class_id':self.class_id.id,
+                        'division_id':section.id,
+                        # 'section_id':self.section,
+                        'subject_id':subject.subject_id.id,
+                        'academic_year':self.academic_year.id,
+                    })
 
     @api.multi
     def get_subjects(self):
