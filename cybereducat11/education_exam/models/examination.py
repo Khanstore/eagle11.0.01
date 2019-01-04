@@ -104,7 +104,7 @@ class EducationExam(models.Model):
         subjects=self.subject_line
         for section in sections:
             for subject in subjects:
-                # check student present for this subject
+                # check student present for this subject in this section
                 check_student = self.check_student_section_subject(section.id, subject.subject_id.id)
                 if check_student==True:
 
