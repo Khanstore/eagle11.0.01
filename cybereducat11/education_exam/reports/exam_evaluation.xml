@@ -4,7 +4,7 @@
 
         <template id="external_layout_evaluation">
         <div class="header">
-             <div style="width: 15%;float: left;">
+             <div style="width: 100px;float: left;">
                 <img src='/web/binary/company_logo' style="width:100%"/>
             </div>
             <div style="width: 15%;float: left;padding-left:10px">

@@ -88,15 +88,19 @@ class EducationExam(models.Model):
                 section_in_history=self.env['education.class.history'].search([('class_id.id', '=', section.id)])
                 record_count=len(section_in_history)
                 if record_count>0:
-                    for rec in section_in_history.compulsory_subjects:
-                        if rec.id==subject_id:
-                            return True
-                    for rec in section_in_history.selective_subjects:
-                        if rec.id==subject_id:
-                            return True
-                    for rec in section_in_history.optional_subjects:
-                        if rec.id==subject_id:
-                            return True
+                    for rec in section_in_history:
+                        for sub in rec.compulsory_subjects:
+                            if sub.id==subject_id:
+                                return True
+                    for rec in section_in_history:
+                        for sub in rec.selective_subjects:
+                            if sub.id==subject_id:
+                                return True
+                    for rec in section_in_history:
+                            for sub in rec.optional_subjects:
+                                if sub.id==subject_id:
+                                    return True
+
         return False
     @api.multi
     def create_result_sheet(self):
