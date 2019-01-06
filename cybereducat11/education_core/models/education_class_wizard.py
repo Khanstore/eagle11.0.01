@@ -29,6 +29,7 @@ class ApplicationClassDetails(models.Model):
             if not assign_request.student_list:
                 raise ValidationError(_('No Student Lines'))
             for line in assign_request.student_list:
+                # TODO filter previously assigned student not to assign again
                 line.student_id.class_id = rec.class_id.id
                 #create student history
                 next_roll=next_roll+1

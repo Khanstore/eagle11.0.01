@@ -29,11 +29,25 @@
             </form>
         </field>
     </record>
+    <record id="student_admission_search" model="ir.ui.view">
+            <field name="name">Admission Search</field>
+            <field name="model">education.admission.register</field>
+            <field name="arch" type="xml">
+                <search string="Students Admission">
+                    <group expand="1" string="Group By">
+                        <filter string="Batch" name="group_batch" context="{'group_by':'academic_year'}"/>
+                        <filter string="Class" name="group_level" context="{'group_by':'standard'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
     <record id="action_admission_register" model="ir.actions.act_window">
         <field name="name">Admission Register</field>
         <field name="res_model">education.admission.register</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
+        <field name="context">{'search_default_group_batch': 1,'search_default_group_level': 1}</field>
         <field name="view_mode">tree,form</field>
     </record>
 
@@ -213,8 +227,6 @@
 
                             <group>
                             <field name="email" attrs="{'readonly': [('state', '=', 'done')]}"/>
-
-
                             <field name="phone" attrs="{'readonly': [('state', '=', 'done')]}"/>
                             <field name="mobile" attrs="{'readonly': [('state', '=', 'done')]}"/>
                             </group>
@@ -278,8 +290,8 @@
                 <!--<field name="sec_lang"/>-->
                 <field name="gender"/>
                 <field name="religion_id"/>
-                <field name="caste_id"/>
-                <field name="mother_tongue"/>
+                <!--<field name="caste_id"/>-->
+                <!--<field name="mother_tongue"/>-->
                 <filter string="New Application" name="new_application" domain="[('state','!=','done')]"/>
                 <filter string="Draft" name="draft_filter" domain="[('state','=','draft')]"/>
                 <filter string="Done" name="active" domain="[('state','=','done')]"/>
@@ -290,8 +302,9 @@
                     <filter string='Gender' icon="fa-genderless" domain="[]" context="{'group_by' : 'gender'}"/>
                     <filter string='Medium' icon="fa-medium" domain="[]" context="{'group_by' : 'medium'}"/>
                     <filter string='Religion' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'religion_id'}"/>
-                    <filter string='Caste' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'caste_id'}"/>
-                    <filter string='Mother Tongue' icon="fa fa-language" domain="[]" context="{'group_by' : 'mother_tongue'}"/>
+                    <filter string='Register' name="group_register" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'register_id'}"/>
+                    <!--<filter string='Caste' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'caste_id'}"/>-->
+                    <!--<filter string='Mother Tongue' icon="fa fa-language" domain="[]" context="{'group_by' : 'mother_tongue'}"/>-->
                </group>
            </search>
         </field>
@@ -305,7 +318,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form,graph,pivot</field>
         <field name="search_view_id" ref="application_search"/>
-        <field name="context">{'search_default_new_application': 1}</field>
+        <field name="context">{'search_default_new_application': 1,'search_default_group_register':1}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create the your first student application here.

@@ -34,6 +34,7 @@
         'views/education_documents.xml',
         'views/education_document_type.xml',
         'views/sequence.xml',
+        'views/education_promotion.xml',
         'views/education_res_company.xml',
         'views/education_division.xml',
         'views/education_subject.xml',

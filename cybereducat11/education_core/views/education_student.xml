@@ -215,7 +215,7 @@
                     <filter string='Gender' icon="fa-genderless" domain="[]" context="{'group_by' : 'gender'}"/>
                     <filter string='Medium' icon="fa-medium" domain="[]" context="{'group_by' : 'medium'}"/>
                     <filter string='Religion' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'religion_id'}"/>
-                    <!--<filter string='Caste' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'caste_id'}"/>-->
+                    <filter string='Class' name="group_class" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'class_id'}"/>
                     <filter string='Mother Tongue' icon="fa fa-language" domain="[]" context="{'group_by' : 'mother_tongue'}"/>
                </group>
            </search>
@@ -229,7 +229,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="search_view_id" ref="student_search"/>
-        <field name="context">{'create': False}</field>
+        <field name="context">{'create': False, 'search_default_group_class':1}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create the your first student here.

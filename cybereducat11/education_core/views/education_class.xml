@@ -28,6 +28,22 @@
             </tree>
         </field>
     </record>
+    <record id="education_class_history_search" model="ir.ui.view">
+        <field name="name">Student-Class History</field>
+        <field name="model">education.class.history</field>
+        <field name="arch" type="xml">
+            <search string="Search Students">
+                <!--<field name="class_id"/>-->
+                <field name="student_id"/>
+                <group expand='0' string='Group by...'>
+                    <filter string='Class' name="group_batch" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'academic_year_id'}"/>
+                    <filter string='Class' name="group_level" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'level'}"/>
+                    <filter string='Class' name="group_section" icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'class_id'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+
     <record id="view_education_class_history_form" model="ir.ui.view">
         <field name="name">education.class.history.form</field>
         <field name="model">education.class.history</field>
@@ -112,6 +128,7 @@
         <field name="name">Students History</field>
         <field name="res_model">education.class.history</field>
         <field name="type">ir.actions.act_window</field>
+        <field name="context">{ 'search_default_group_batch':1,'search_default_group_section':1,'search_default_group_level':1}</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
 

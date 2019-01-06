@@ -96,6 +96,7 @@ class EducationStudent(models.Model):
     section_id=fields.Integer('section_id')
     group_id=fields.Integer('Group')
     import_roll_no=fields.Integer('Roll No')
+    assigned=fields.Boolean(default=False)
     _sql_constraints = [
         ('ad_no', 'unique(ad_no)', "Another Student already exists with this admission number!"),
         ('roll_no', 'unique(section_id,roll_no)', "Another Student already exists with this Roll Number!"),

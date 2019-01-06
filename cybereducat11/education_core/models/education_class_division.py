@@ -25,7 +25,7 @@ class EducationClass(models.Model):
     def _division_count(self):
         """Return the count of the division in the level"""
         for rec in self:
-            rec.divisiont_count = len(self.division_ids)
+            rec.division_count = len(self.division_ids)
             rec.section_count = len(self.section_ids)
 
     def view_division(self):
@@ -141,7 +141,7 @@ class EducationClassDivisionHistory(models.Model):
                                        help="Select the Academic Year")
     class_id = fields.Many2one('education.class.division', string='Class',
                                help="Select the class")
-    level=fields.Many2one('education.class',string='level',related='class_id.class_id') #related='class_id.class_id'
+    level=fields.Many2one('education.class',string='level',related='class_id.class_id',store=True) #related='class_id.class_id'
     section=fields.Many2one('education.class.section',string='section',related='class_id.section_id') #
     from_date=fields.Date('From')
     till_date=fields.Date('Till')

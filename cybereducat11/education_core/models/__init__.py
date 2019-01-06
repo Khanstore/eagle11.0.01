@@ -15,3 +15,4 @@ from . import education_faculty_recruitment
 from . import education_documents
 from . import education_amenties
 from . import importpreviousdata
+from . import promotion

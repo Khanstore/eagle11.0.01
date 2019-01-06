@@ -106,12 +106,30 @@
         </field>
     </record>
 
+     <record id="view_education_class_division_search" model="ir.ui.view">
+        <field name="name">Class Division </field>
+        <field name="model">education.class.division</field>
+        <field name="arch" type="xml">
+            <search string="Search Class Sections">
+                <field name="academic_year_id"/>
+                <!--<filter string="Rejected" name="rejected" domain="[('state','=','reject')]"/>-->
+                <group expand='0' string='Group by...'>
+                    <filter string='Academic Year' name="group_batch" icon="fa-user" domain="[]" context="{'group_by' : 'academic_year_id'}"/>
+                    <filter string='Level' name="group_level" icon="fa-user" domain="[]" context="{'group_by' : 'class_id'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+
+
+
     <record id="action_education_class_division_tree" model="ir.actions.act_window">
         <field name="name">Class Division</field>
         <field name="res_model">education.class.division</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'search_default_group_batch':1,'search_default_group_level':1}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create the your first class division here.
